@@ -1,5 +1,5 @@
 First things I want to do:
-	1. Configure settings, research good resolution and best way to control resolution / viewport in Godot. (first git commit)  DONE
+	1. Configure settings, research good resolution and best way to control resolution / viewport in Godot. (first git commit) DONE
 	2. Draw some placeholders:
 		1. Player
 		2. Bush / Wall
