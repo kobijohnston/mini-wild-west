@@ -1,0 +1,18 @@
+First things I want to do:
+	1. Configure settings, research good resolution and best way to control resolution / viewport in Godot. (first git commit)  DONE
+	2. Draw some placeholders:
+		1. Player
+		2. Bush / Wall
+	3. Get player movement working
+	4. Get player wall collision working 
+
+Next group to do (in no particular order):
+	-Come up with map of the town (Amarillo maybe)
+		-Things to inlcude:
+			-Saloon
+			-Sheriff's office
+			-Bank
+			-Shop
+			-Others 
+	-Make basic shooting work (basic being press a button to shoot, it will go until it hits something)
+	-Draw placeholder map (with locations of things)
