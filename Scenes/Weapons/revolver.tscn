@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bliwbtlq38e7u"]
+
+[ext_resource type="Script" uid="uid://fv30yen45fgt" path="res://Scripts/revolver.gd" id="1_xjckw"]
+
+[node name="revolver" type="Node"]
+script = ExtResource("1_xjckw")

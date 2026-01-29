@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://wg28jfwqmear"]
+
+[ext_resource type="Script" uid="uid://b41j2acw3umxa" path="res://Scripts/player.gd" id="1_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://3m5fpexecyuw" path="res://Assets/Sprites/player.png" id="1_v0iea"]
+[ext_resource type="PackedScene" uid="uid://bliwbtlq38e7u" path="res://Scenes/Weapons/revolver.tscn" id="2_6t5aa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
+size = Vector2(8, 12)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_cvnsp")
+
+[node name="revolver" parent="." instance=ExtResource("2_6t5aa")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
+texture = ExtResource("1_v0iea")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 10)
+shape = SubResource("RectangleShape2D_cvnsp")
