@@ -57,6 +57,8 @@ func aiming():
 		aiming_setup = false
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
+	if Input.is_action_just_pressed("reload"):
+		current_weapon.reload()
 
 func shoot():
 	var mouse_pos = get_global_mouse_position()

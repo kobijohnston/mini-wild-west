@@ -1,8 +1,0 @@
-
-- Get walls collision working
-- Refine shooting a bit:
-	-Draw gun
-	-Draw bullets
-	-Draw ammo indicator
-	-Reload button
-	-Basic reload animation

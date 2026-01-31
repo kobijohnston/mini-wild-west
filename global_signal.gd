@@ -1,3 +1,4 @@
 extends Node
 
-signal ammo_changed(ammo, max_ammo)
+signal ammo_changed(ammo)
+signal reload(weapon)

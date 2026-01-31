@@ -5,18 +5,28 @@ extends Node
 
 const MAX_AMMO = 6
 const COOLDOWN_TIME = 60 
+const RELOAD_TIME = 180
+var reload_timer = RELOAD_TIME
 var cooldown_timer = COOLDOWN_TIME
 var ammo = MAX_AMMO
 var ready_to_shoot = true
+var reloading = false
 var bullet_scene = preload("res://Scenes/Weapons/bullet.tscn")
 
 func _process(delta: float):
-	if not ready_to_shoot:
-		if cooldown_timer == 0:
-			cooldown_timer = COOLDOWN_TIME
-			ready_to_shoot = true
-			return
-		cooldown_timer -= 1
+	if not reloading:
+		if not ready_to_shoot:
+			if cooldown_timer == 0:
+				cooldown_timer = COOLDOWN_TIME
+				ready_to_shoot = true
+				return
+			cooldown_timer -= 1
+	else:
+		if reload_timer > 0:
+			reload_timer -= 1
+		else:
+			reload_timer = RELOAD_TIME
+			reloading = false
 
 func shoot(position, rotation):
 	if ready_to_shoot:
@@ -27,8 +37,15 @@ func shoot(position, rotation):
 			bullet.shooter = get_parent()
 			get_tree().current_scene.add_child(bullet)
 			ammo -= 1
-			GlobalSignal.ammo_changed.emit(-1, MAX_AMMO)
+			GlobalSignal.ammo_changed.emit(-1)
 			ready_to_shoot = false
+		else:
+			reload()
+
+func reload():
+	reloading = true
+	ammo = MAX_AMMO
+	GlobalSignal.reload.emit(Revolver)
 
 func _on_ammo_changed():
 	pass

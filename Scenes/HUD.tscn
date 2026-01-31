@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ctuqpujhwndd2"]
+[gd_scene load_steps=18 format=3 uid="uid://ctuqpujhwndd2"]
 
 [ext_resource type="Script" uid="uid://0gt4makcpmw" path="res://Scripts/hud.gd" id="1_jo1ms"]
 [ext_resource type="Texture2D" uid="uid://bo2ghorfhotdy" path="res://Assets/Sprites/revolver_barrell.png" id="1_sd512"]
@@ -31,6 +31,34 @@ region = Rect2(32, 0, 32, 32)
 atlas = ExtResource("1_sd512")
 region = Rect2(0, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5b84"]
+atlas = ExtResource("1_sd512")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbb48"]
+atlas = ExtResource("1_sd512")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2vyp"]
+atlas = ExtResource("1_sd512")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhtw7"]
+atlas = ExtResource("1_sd512")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5mne"]
+atlas = ExtResource("1_sd512")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuldq"]
+atlas = ExtResource("1_sd512")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6jqq"]
+atlas = ExtResource("1_sd512")
+region = Rect2(192, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_b5b84"]
 animations = [{
 "frames": [{
@@ -58,6 +86,32 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b5b84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbb48")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2vyp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhtw7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w5mne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xuldq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6jqq")
+}],
+"loop": false,
+"name": &"reload",
+"speed": 2.33
 }]
 
 [node name="CanvasLayer" type="CanvasLayer"]
