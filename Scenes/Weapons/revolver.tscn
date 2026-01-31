@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://bliwbtlq38e7u"]
+[gd_scene load_steps=3 format=3 uid="uid://bliwbtlq38e7u"]
 
 [ext_resource type="Script" uid="uid://fv30yen45fgt" path="res://Scripts/revolver.gd" id="1_xjckw"]
+[ext_resource type="Texture2D" uid="uid://b7d8pgprikttn" path="res://Assets/Sprites/revolver.png" id="2_xjckw"]
 
-[node name="revolver" type="Node"]
+[node name="revolver" type="Node2D"]
 script = ExtResource("1_xjckw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4, -10)
+texture = ExtResource("2_xjckw")
+centered = false
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(9, -3)

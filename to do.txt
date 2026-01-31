@@ -1,12 +1,8 @@
 
-Next group to do (in no particular order):
-	-Come up with map of the town (Amarillo maybe)
-		-Things to inlcude:
-			-Saloon
-			-Sheriff's office
-			-Bank
-			-Shop
-			-Train station
-			-Others 
-	-Make basic shooting work (basic being press a button to shoot, it will go until it hits something)
-	-Draw placeholder map (with locations of things)
+- Get walls collision working
+- Refine shooting a bit:
+	-Draw gun
+	-Draw bullets
+	-Draw ammo indicator
+	-Reload button
+	-Basic reload animation

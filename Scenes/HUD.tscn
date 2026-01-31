@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://ctuqpujhwndd2"]
+
+[ext_resource type="Script" uid="uid://0gt4makcpmw" path="res://Scripts/hud.gd" id="1_jo1ms"]
+[ext_resource type="Texture2D" uid="uid://bo2ghorfhotdy" path="res://Assets/Sprites/revolver_barrell.png" id="1_sd512"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jo1ms"]
+atlas = ExtResource("1_sd512")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_psnte"]
+atlas = ExtResource("1_sd512")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3jbq"]
+atlas = ExtResource("1_sd512")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3eba"]
+atlas = ExtResource("1_sd512")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8s2e"]
+atlas = ExtResource("1_sd512")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t385i"]
+atlas = ExtResource("1_sd512")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfm57"]
+atlas = ExtResource("1_sd512")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b5b84"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jo1ms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_psnte")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3jbq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3eba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8s2e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t385i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfm57")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_jo1ms")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Revolver Barrell" type="AnimatedSprite2D" parent="Control"]
+position = Vector2(21, 21)
+sprite_frames = SubResource("SpriteFrames_b5b84")
