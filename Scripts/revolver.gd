@@ -29,7 +29,7 @@ func _process(delta: float):
 			reloading = false
 
 func shoot(position, rotation):
-	if ready_to_shoot:
+	if ready_to_shoot and not reloading:
 		if ammo > 0:
 			var bullet = bullet_scene.instantiate()
 			bullet.position = marker_2d.global_position

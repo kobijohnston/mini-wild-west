@@ -1,5 +1,4 @@
 Next group of things:
-	-Draw background tiles (ground, path)
-	-Draw wall tiles 
+	-Fix reloading bug
 	-Draw lawmen
 	

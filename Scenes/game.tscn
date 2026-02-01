@@ -17,36 +17,17 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="Control" parent="." instance=ExtResource("4_3dryh")]
-offset_left = 132.0
-offset_top = 148.0
-offset_right = 132.0
-offset_bottom = 148.0
 
 [node name="bushes" type="Node" parent="."]
 
 [node name="StaticBody2D" parent="bushes" instance=ExtResource("3_3dryh")]
-position = Vector2(304, 208)
+position = Vector2(515, 335)
 
 [node name="StaticBody2D2" parent="bushes" instance=ExtResource("3_3dryh")]
-position = Vector2(320, 208)
+position = Vector2(390, 317)
 
 [node name="StaticBody2D3" parent="bushes" instance=ExtResource("3_3dryh")]
-position = Vector2(448, 208)
+position = Vector2(446, 257)
 
 [node name="StaticBody2D4" parent="bushes" instance=ExtResource("3_3dryh")]
-position = Vector2(400, 208)
-
-[node name="StaticBody2D5" parent="bushes" instance=ExtResource("3_3dryh")]
-position = Vector2(384, 208)
-
-[node name="StaticBody2D6" parent="bushes" instance=ExtResource("3_3dryh")]
-position = Vector2(368, 208)
-
-[node name="StaticBody2D7" parent="bushes" instance=ExtResource("3_3dryh")]
-position = Vector2(352, 208)
-
-[node name="StaticBody2D8" parent="bushes" instance=ExtResource("3_3dryh")]
-position = Vector2(336, 208)
-
-[node name="StaticBody2D9" parent="bushes" instance=ExtResource("3_3dryh")]
-position = Vector2(464, 208)
+position = Vector2(298, 232)
