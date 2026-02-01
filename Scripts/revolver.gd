@@ -43,6 +43,8 @@ func shoot(position, rotation):
 			reload()
 
 func reload():
+	if ammo == MAX_AMMO:
+		return  
 	reloading = true
 	ammo = MAX_AMMO
 	GlobalSignal.reload.emit(Revolver)

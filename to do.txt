@@ -1,0 +1,5 @@
+Next group of things:
+	-Draw background tiles (ground, path)
+	-Draw wall tiles 
+	-Draw lawmen
+	
