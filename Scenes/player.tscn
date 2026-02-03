@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://3m5fpexecyuw" path="res://Assets/Sprites/player.png" id="1_v0iea"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
-size = Vector2(8, 12)
+size = Vector2(32, 48)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 motion_mode = 1
@@ -15,8 +15,8 @@ position = Vector2(8, 8)
 texture = ExtResource("1_v0iea")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(8, 10)
+position = Vector2(8, 16)
 shape = SubResource("RectangleShape2D_cvnsp")
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(14, 12)
+position = Vector2(32, 24)

@@ -1,6 +1,6 @@
 extends Area2D
 
-var speed = 400
+var speed = 400 * 4
 var shooter
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

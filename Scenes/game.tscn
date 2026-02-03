@@ -8,9 +8,10 @@
 [node name="Game" type="Node"]
 
 [node name="Sprite2D" parent="." instance=ExtResource("1_qxrlw")]
+position = Vector2(960, 576)
 
 [node name="Player" parent="." instance=ExtResource("2_qxrlw")]
-position = Vector2(372, 283)
+position = Vector2(1216, 1152)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 drag_horizontal_enabled = true
@@ -18,16 +19,11 @@ drag_vertical_enabled = true
 
 [node name="Control" parent="." instance=ExtResource("4_3dryh")]
 
-[node name="bushes" type="Node" parent="."]
+[node name="StaticBody2D" parent="." instance=ExtResource("3_3dryh")]
+position = Vector2(1408, 1344)
 
-[node name="StaticBody2D" parent="bushes" instance=ExtResource("3_3dryh")]
-position = Vector2(515, 335)
+[node name="StaticBody2D2" parent="." instance=ExtResource("3_3dryh")]
+position = Vector2(1536, 960)
 
-[node name="StaticBody2D2" parent="bushes" instance=ExtResource("3_3dryh")]
-position = Vector2(390, 317)
-
-[node name="StaticBody2D3" parent="bushes" instance=ExtResource("3_3dryh")]
-position = Vector2(446, 257)
-
-[node name="StaticBody2D4" parent="bushes" instance=ExtResource("3_3dryh")]
-position = Vector2(298, 232)
+[node name="StaticBody2D3" parent="." instance=ExtResource("3_3dryh")]
+position = Vector2(2048, 1344)

@@ -7,9 +7,8 @@
 script = ExtResource("1_xjckw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-4, -10)
+position = Vector2(16, -8)
 texture = ExtResource("2_xjckw")
-centered = false
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(9, -3)
+position = Vector2(36, -12)

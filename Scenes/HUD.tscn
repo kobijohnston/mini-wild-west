@@ -5,59 +5,59 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jo1ms"]
 atlas = ExtResource("1_sd512")
-region = Rect2(192, 0, 32, 32)
+region = Rect2(768, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_psnte"]
 atlas = ExtResource("1_sd512")
-region = Rect2(160, 0, 32, 32)
+region = Rect2(640, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s3jbq"]
 atlas = ExtResource("1_sd512")
-region = Rect2(128, 0, 32, 32)
+region = Rect2(512, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c3eba"]
 atlas = ExtResource("1_sd512")
-region = Rect2(96, 0, 32, 32)
+region = Rect2(384, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g8s2e"]
 atlas = ExtResource("1_sd512")
-region = Rect2(64, 0, 32, 32)
+region = Rect2(256, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t385i"]
 atlas = ExtResource("1_sd512")
-region = Rect2(32, 0, 32, 32)
+region = Rect2(128, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nfm57"]
 atlas = ExtResource("1_sd512")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b5b84"]
 atlas = ExtResource("1_sd512")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fbb48"]
 atlas = ExtResource("1_sd512")
-region = Rect2(32, 0, 32, 32)
+region = Rect2(128, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o2vyp"]
 atlas = ExtResource("1_sd512")
-region = Rect2(64, 0, 32, 32)
+region = Rect2(256, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hhtw7"]
 atlas = ExtResource("1_sd512")
-region = Rect2(96, 0, 32, 32)
+region = Rect2(384, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w5mne"]
 atlas = ExtResource("1_sd512")
-region = Rect2(128, 0, 32, 32)
+region = Rect2(512, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xuldq"]
 atlas = ExtResource("1_sd512")
-region = Rect2(160, 0, 32, 32)
+region = Rect2(640, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g6jqq"]
 atlas = ExtResource("1_sd512")
-region = Rect2(192, 0, 32, 32)
+region = Rect2(768, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_b5b84"]
 animations = [{
@@ -124,5 +124,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Revolver Barrell" type="AnimatedSprite2D" parent="Control"]
-position = Vector2(21, 21)
+position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_b5b84")
+centered = false

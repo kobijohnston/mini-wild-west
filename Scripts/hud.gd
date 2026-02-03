@@ -17,3 +17,4 @@ func _on_reload(weapon):
 	revolver_barrell.play()
 	await revolver_barrell.animation_finished
 	revolver_barrell.animation = "default"
+	GlobalSignal.reload_finished.emit()

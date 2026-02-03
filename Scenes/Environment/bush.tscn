@@ -3,14 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://d08uw6bm2tr6l" path="res://Assets/Sprites/bush.png" id="1_tld8b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kx7ng"]
-size = Vector2(16, 16)
+size = Vector2(64, 64)
 
 [node name="StaticBody2D" type="StaticBody2D"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(8, 8)
-shape = SubResource("RectangleShape2D_kx7ng")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(8, 8)
 texture = ExtResource("1_tld8b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kx7ng")

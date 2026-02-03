@@ -4,7 +4,7 @@ enum Player_State { FREE, AIMING }
 var current_state = Player_State.FREE
 var aiming_setup = false
 
-@export var speed = 80
+@export var speed = 80 * 4
 var character_direction : Vector2
 
 @onready var marker_2d: Marker2D = $Marker2D
@@ -46,6 +46,7 @@ func aiming():
 			add_child(current_weapon)
 			weapon_added = true
 		aiming_setup = true
+		current_weapon.visible = true
 	
 	var aim_direction = (get_global_mouse_position() - global_position).normalized()
 	current_weapon.global_position = marker_2d.global_position
@@ -54,6 +55,7 @@ func aiming():
 	crosshair.global_position = get_global_mouse_position()
 	if Input.is_action_just_pressed("space"):
 		current_state = Player_State.FREE
+		current_weapon.visible = false
 		aiming_setup = false
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
