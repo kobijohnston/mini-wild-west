@@ -1,4 +1,31 @@
 Next group of things:
-	-Fix reloading bug
+	- Draw up general plan for features to add
 	-Draw lawmen
 	
+
+Feature wishlist:
+	-Lawmen that respond to you shooting innocents or them 
+	-Money
+	-General store: Sells food for healing, guns, ammunition
+	-Blackjack table in the saloon
+	-Bounty posters: Interacting spawns an outlaw in the town you can hunt for money
+	-Character customisation: jackets, hats, gun, shoes
+	-Towns:
+		-Amarillo
+		-Agua Fria
+		-El Paso
+		-Tombstone?
+		-Juarez?
+	
+
+Think about:
+	-Character rescale to 16x32?
+	-Completion for each town:
+		-Hunt down all outlaws in the town
+		-Bankrupt the blackjack dealer
+		-Win a game of poker
+		-Buy the special item from that town
+		-Kill all the lawmen in the town
+		Potential idea:
+			-Make the towns roguelike so they reset upon each visit
+			-Complete all star quests in one run to earn the black star
