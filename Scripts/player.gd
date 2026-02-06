@@ -1,27 +1,41 @@
 extends CharacterBody2D
 
 enum Player_State { FREE, AIMING }
+enum Tooltips { FREE, AIMING, PLAY_BLACKJACK }
 var current_state = Player_State.FREE
+var current_tooltip = Tooltips.FREE
 var aiming_setup = false
 
 @export var speed = 80 * 4
 var character_direction : Vector2
 
-@onready var marker_2d: Marker2D = $Marker2D
-
 var crosshair_scene = preload("res://Scenes/Weapons/crosshair.tscn")
 var revolver_scene = preload("res://Scenes/Weapons/revolver.tscn")
+@onready var marker_2d: Marker2D = $Marker2D
 @onready var revolver = revolver_scene.instantiate()
 @onready var current_weapon = revolver
+
+func _ready():
+	GlobalSignal.near_blackjack.connect(_on_near_blackjack)
 
 func _physics_process(delta):
 
 	match current_state:
 		Player_State.FREE:
 			movement()
+			current_tooltip = Tooltips.FREE
 		Player_State.AIMING:
 			movement()
 			aiming()
+			current_tooltip = Tooltips.AIMING
+	
+	match current_tooltip:
+		Tooltips.FREE:
+			GlobalSignal.show_tooltip.emit("Free")
+		Tooltips.AIMING:
+			GlobalSignal.show_tooltip.emit("Aiming")
+		Tooltips.PLAY_BLACKJACK:
+			GlobalSignal.show_tooltip.emit("PLay Blackjack")
 
 func movement():
 	character_direction.x = Input.get_axis("left", "right")
@@ -66,3 +80,8 @@ func shoot():
 	var mouse_pos = get_global_mouse_position()
 	var aim_direction = (mouse_pos - global_position).normalized()
 	current_weapon.shoot(global_position, aim_direction)
+	
+func _on_near_blackjack():
+	current_tooltip = Tooltips.PLAY_BLACKJACK
+	print("Play Blackjack")
+	

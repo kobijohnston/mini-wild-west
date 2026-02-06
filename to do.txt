@@ -1,7 +1,11 @@
 NEXT UP TO DO - BLACKJACK:
-	-Make Area2D on entered, show a tooltip to play blackjack
+	-Make Area2D on entered, show a tooltip to play blackjack:
+		-Almost done with tooltips, need to make it so they arent set every frame ->
+			-Make a change_state or change_tooltip function, make a on_body_exited for the blackjack table to change tooltip back when player leaves.
+			Need to make it so tooltip doesnt try to update every frame maybe? last_tooltip variable then would be needed.
 	-Make key press begin blackjack game (use a text label in blackjack.tscn to test)
-	-Begin development of blackjack game
+	-Begin development of blackjack game - notes in yellow book
+	
 	
 
 Feature wishlist:
