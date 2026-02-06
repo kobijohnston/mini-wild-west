@@ -1,6 +1,7 @@
-Next group of things:
-	- Draw up general plan for features to add
-	-Draw lawmen
+NEXT UP TO DO - BLACKJACK:
+	-Make Area2D on entered, show a tooltip to play blackjack
+	-Make key press begin blackjack game (use a text label in blackjack.tscn to test)
+	-Begin development of blackjack game
 	
 
 Feature wishlist:
