@@ -29,3 +29,4 @@ position = Vector2(63, 112)
 shape = SubResource("CapsuleShape2D_v56ml")
 
 [connection signal="body_entered" from="Blackjack Area" to="Blackjack Area" method="_on_body_entered"]
+[connection signal="body_exited" from="Blackjack Area" to="Blackjack Area" method="_on_body_exited"]

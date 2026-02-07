@@ -4,7 +4,9 @@ enum Player_State { FREE, AIMING }
 enum Tooltips { FREE, AIMING, PLAY_BLACKJACK }
 var current_state = Player_State.FREE
 var current_tooltip = Tooltips.FREE
+var last_tooltip = current_tooltip
 var aiming_setup = false
+
 
 @export var speed = 80 * 4
 var character_direction : Vector2
@@ -23,11 +25,9 @@ func _physics_process(delta):
 	match current_state:
 		Player_State.FREE:
 			movement()
-			current_tooltip = Tooltips.FREE
 		Player_State.AIMING:
 			movement()
 			aiming()
-			current_tooltip = Tooltips.AIMING
 	
 	match current_tooltip:
 		Tooltips.FREE:
@@ -35,7 +35,7 @@ func _physics_process(delta):
 		Tooltips.AIMING:
 			GlobalSignal.show_tooltip.emit("Aiming")
 		Tooltips.PLAY_BLACKJACK:
-			GlobalSignal.show_tooltip.emit("PLay Blackjack")
+			GlobalSignal.show_tooltip.emit("Play Blackjack")
 
 func movement():
 	character_direction.x = Input.get_axis("left", "right")
@@ -46,7 +46,7 @@ func movement():
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, speed)
 	if current_state == Player_State.FREE and Input.is_action_just_pressed("shoot"):
-		current_state = Player_State.AIMING
+		change_state(Player_State.AIMING)
 		print("Weapon Drawn")
 	move_and_slide()
 
@@ -68,7 +68,7 @@ func aiming():
 	var crosshair = crosshair_scene.instantiate()
 	crosshair.global_position = get_global_mouse_position()
 	if Input.is_action_just_pressed("space"):
-		current_state = Player_State.FREE
+		change_state(Player_State.FREE)
 		current_weapon.visible = false
 		aiming_setup = false
 	if Input.is_action_just_pressed("shoot"):
@@ -81,7 +81,18 @@ func shoot():
 	var aim_direction = (mouse_pos - global_position).normalized()
 	current_weapon.shoot(global_position, aim_direction)
 	
-func _on_near_blackjack():
-	current_tooltip = Tooltips.PLAY_BLACKJACK
-	print("Play Blackjack")
+func change_state(state):
+	current_state = state
+	match state:
+		Player_State.FREE:
+			current_tooltip = Tooltips.FREE
+		Player_State.AIMING:
+			current_tooltip = Tooltips.AIMING
+	last_tooltip = current_tooltip
+func _on_near_blackjack(is_near_blackjack):
+	if is_near_blackjack:
+		current_tooltip = Tooltips.PLAY_BLACKJACK
+		print("Play Blackjack")
+	else:
+		current_tooltip = last_tooltip
 	
