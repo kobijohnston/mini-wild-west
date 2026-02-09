@@ -8,8 +8,6 @@ func _ready() -> void:
 	GlobalSignal.ammo_changed.connect(_on_ammo_changed)
 	GlobalSignal.reload.connect(_on_reload)
 	GlobalSignal.show_tooltip.connect(_on_show_tooltip)
-func _process(delta: float) -> void:
-	pass
 
 func _on_ammo_changed(ammo):
 	revolver_barrell.frame += ( -1 * ammo)
@@ -28,4 +26,4 @@ func _on_show_tooltip(tooltip):
 		"Aiming":
 			tooltip_label.text = "[ Space ] Holster weapon"
 		"Play Blackjack":
-			tooltip_label.text = "[ Space ] Play Blackjack"
+			tooltip_label.text = "[ Q ] Play Blackjack"

@@ -8,7 +8,6 @@
 [node name="Game" type="Node"]
 
 [node name="Sprite2D" parent="." instance=ExtResource("1_qxrlw")]
-position = Vector2(960, 576)
 
 [node name="Player" parent="." instance=ExtResource("2_qxrlw")]
 position = Vector2(1216, 1152)

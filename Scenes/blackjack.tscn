@@ -1,0 +1,101 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwbwyta5vubcx"]
+
+[ext_resource type="Script" uid="uid://crs4lv00hkj3r" path="res://Scripts/blackjack.gd" id="1_45x14"]
+
+[node name="Blackjack" type="CanvasLayer"]
+script = ExtResource("1_45x14")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 192.0
+offset_top = 128.0
+offset_right = 1728.0
+offset_bottom = 960.0
+color = Color(0.105882354, 0.38039216, 0.16078432, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 384.0
+offset_top = 576.0
+offset_right = 523.0
+offset_bottom = 640.0
+theme_override_font_sizes/font_size = 46
+text = "Player"
+
+[node name="Dealer Label" type="Label" parent="."]
+offset_left = 384.0
+offset_top = 192.0
+offset_right = 640.0
+offset_bottom = 320.0
+theme_override_font_sizes/font_size = 46
+text = "Dealer"
+
+[node name="Side Buttons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1344.0
+offset_top = 448.0
+offset_right = 1536.0
+offset_bottom = 576.0
+
+[node name="Hit Button" type="Button" parent="Side Buttons"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = -128.0
+theme_override_font_sizes/font_size = 40
+text = "Hit"
+
+[node name="Stand Button" type="Button" parent="Side Buttons"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = -64.0
+offset_right = 256.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 40
+text = "Stand"
+
+[node name="Double Down Button" type="Button" parent="Side Buttons"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 128.0
+offset_right = 256.0
+offset_bottom = 256.0
+theme_override_font_sizes/font_size = 40
+text = "Double
+Down"
+
+[node name="Quit Button" type="Button" parent="Side Buttons"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 320.0
+offset_right = 256.0
+offset_bottom = 448.0
+theme_override_font_sizes/font_size = 40
+text = "Quit"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 960.0
+offset_top = 320.0
+offset_right = 1216.0
+offset_bottom = 448.0
+theme_override_font_sizes/font_size = 46
+text = "Your Stake"
+
+[node name="SpinBox" type="SpinBox" parent="."]
+anchors_preset = -1
+anchor_right = 0.023000002
+anchor_bottom = 0.119
+offset_left = 1024.0
+offset_top = 448.0
+offset_right = 1107.84
+offset_bottom = 383.47998
+
+[node name="Button" type="Button" parent="."]
+offset_left = 960.0
+offset_top = 576.0
+offset_right = 1216.0
+offset_bottom = 704.0
+theme_override_font_sizes/font_size = 46
+text = "Bet"
+
+[connection signal="pressed" from="Side Buttons/Quit Button" to="." method="_on_quit_button_pressed"]

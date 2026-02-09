@@ -36,6 +36,13 @@ func _physics_process(delta):
 			GlobalSignal.show_tooltip.emit("Aiming")
 		Tooltips.PLAY_BLACKJACK:
 			GlobalSignal.show_tooltip.emit("Play Blackjack")
+			if Input.is_action_just_pressed("select"):
+				var blackjack_scene = preload("res://Scenes/blackjack.tscn")
+				var blackjack_game = blackjack_scene.instantiate()
+				#blackjack_game.global_position = global_position
+				get_tree().current_scene.add_child(blackjack_game)
+				#preload blackjack scene
+				#instantiate 
 
 func movement():
 	character_direction.x = Input.get_axis("left", "right")
