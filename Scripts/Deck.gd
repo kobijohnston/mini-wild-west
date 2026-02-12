@@ -16,6 +16,12 @@ func create_deck():
 				"face down": false,
 				"sprite": get_card_sprite(self)
 			}
+			deck.append(card)
+
+func draw_card():
+	var card = deck[0]
+	deck.remove_at(0)
+	return card
 
 func get_card_sprite(card):
 	if card["face down"]:

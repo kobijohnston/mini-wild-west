@@ -1,9 +1,10 @@
 extends CanvasLayer
 
-
-# Called when the node enters the scene tree for the first time.
+enum Game_State {SETUP, BET, DEAL, PLAYER_TURN, DEALER_TURN}
+var deck = Deck.new()
 func _ready() -> void:
-	pass # Replace with function body.
+	
+	pass
 
 func _process(delta: float) -> void:
 	pass
