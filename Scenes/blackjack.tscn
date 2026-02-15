@@ -80,7 +80,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Button" type="Button" parent="Betting"]
+[node name="Bet Button" type="Button" parent="Betting"]
 layout_mode = 0
 offset_left = 960.0
 offset_top = 576.0
@@ -89,7 +89,7 @@ offset_bottom = 704.0
 theme_override_font_sizes/font_size = 46
 text = "Bet"
 
-[node name="SpinBox" type="SpinBox" parent="Betting"]
+[node name="Bet Value" type="SpinBox" parent="Betting"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.023000002
@@ -109,3 +109,4 @@ theme_override_font_sizes/font_size = 46
 text = "Your Stake"
 
 [connection signal="pressed" from="Side Buttons/Quit Button" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Betting/Bet Button" to="." method="_on_bet_button_pressed"]
