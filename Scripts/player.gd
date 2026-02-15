@@ -1,12 +1,13 @@
 extends CharacterBody2D
 
-enum Player_State { FREE, AIMING }
+enum Player_State { FREE, AIMING, PAUSED }
 enum Tooltips { FREE, AIMING, PLAY_BLACKJACK }
 var current_state = Player_State.FREE
 var current_tooltip = Tooltips.FREE
+var last_state = current_state
 var last_tooltip = current_tooltip
 var aiming_setup = false
-
+var paused = false
 
 @export var speed = 80 * 4
 var character_direction : Vector2
@@ -19,6 +20,7 @@ var revolver_scene = preload("res://Scenes/Weapons/revolver.tscn")
 
 func _ready():
 	GlobalSignal.near_blackjack.connect(_on_near_blackjack)
+	GlobalSignal.unpause.connect(_on_unpause)
 
 func _physics_process(delta):
 
@@ -28,6 +30,8 @@ func _physics_process(delta):
 		Player_State.AIMING:
 			movement()
 			aiming()
+		Player_State.PAUSED:
+			pass
 	
 	match current_tooltip:
 		Tooltips.FREE:
@@ -39,10 +43,8 @@ func _physics_process(delta):
 			if Input.is_action_just_pressed("select"):
 				var blackjack_scene = preload("res://Scenes/blackjack.tscn")
 				var blackjack_game = blackjack_scene.instantiate()
-				#blackjack_game.global_position = global_position
 				get_tree().current_scene.add_child(blackjack_game)
-				#preload blackjack scene
-				#instantiate 
+				change_state(Player_State.PAUSED)
 
 func movement():
 	character_direction.x = Input.get_axis("left", "right")
@@ -87,8 +89,17 @@ func shoot():
 	var mouse_pos = get_global_mouse_position()
 	var aim_direction = (mouse_pos - global_position).normalized()
 	current_weapon.shoot(global_position, aim_direction)
+
+func pause():
+	last_state = current_state
+	if not paused:
+		current_state = Player_State.PAUSED
+		
 	
 func change_state(state):
+	if state == Player_State.PAUSED:
+		pause()
+		return
 	current_state = state
 	match state:
 		Player_State.FREE:
@@ -96,10 +107,15 @@ func change_state(state):
 		Player_State.AIMING:
 			current_tooltip = Tooltips.AIMING
 	last_tooltip = current_tooltip
+	
 func _on_near_blackjack(is_near_blackjack):
 	if is_near_blackjack:
 		current_tooltip = Tooltips.PLAY_BLACKJACK
 		print("Play Blackjack")
 	else:
 		current_tooltip = last_tooltip
-	
+		
+func _on_unpause():
+	print(last_state)
+	change_state(last_state)
+	print("Unpause")

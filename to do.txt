@@ -2,7 +2,7 @@ NEXT UP TO DO - BLACKJACK:
 	
 	-Draw the cards art
 	-State machine:
-		-SETUP
+		-SETUP -> make it so player pauses, and make shortcut to game for debugging 
 		-BET 
 		-DEAL
 		-PLAYER TURN
