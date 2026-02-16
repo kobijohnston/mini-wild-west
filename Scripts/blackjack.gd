@@ -1,12 +1,15 @@
 extends CanvasLayer
 
 enum Game_State {SETUP, BET, DEAL, PLAYER_TURN, DEALER_TURN}
+enum Role { PLAYER, DEALER }
 var current_state = Game_State.SETUP
 var deck = Deck.new()
 var hands_dealt = false
 @onready var betting: Control = $Betting
 @onready var bet_button: Button = $"Betting/Bet Button"
 @onready var bet_value: SpinBox = $Betting/SpinBox
+
+signal draw_card_sprite(card, role)
 
 var player = {
 	"hand": [],
@@ -56,6 +59,8 @@ func setup_game():
 		"bust": false
 	}
 	
+	deck.create_deck()
+	deck.deck.shuffle()
 	change_state(Game_State.BET)
 	
 func bet():
@@ -64,7 +69,18 @@ func bet():
 func deal():
 	dealer["hand"].append(deck.draw_card())
 	dealer["hand"].append(deck.draw_card())
-	#figure out drawing, use signal? also figure out face down card
+	
+	player["hand"].append(deck.draw_card())
+	player["hand"].append(deck.draw_card())
+	
+	for card in dealer["hand"]:
+		draw_card_sprite.emit(card["sprite"], Role.DEALER)
+	
+	for card in player["hand"]:
+		draw_card_sprite.emit(card["sprite"], Role.PLAYER)
+	
+	hands_dealt = true
+	
 	
 func change_state(state):
 	current_state = state

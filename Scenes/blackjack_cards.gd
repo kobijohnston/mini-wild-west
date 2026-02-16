@@ -1,0 +1,50 @@
+extends Control
+@onready var deck: AnimatedSprite2D = $Deck
+@onready var dealer_marker: Marker2D = $"Dealer Marker"
+@onready var player_marker: Marker2D = $"Player Marker"
+
+var dealer_hand = []
+var player_hand = []
+
+var card_drawn = false
+
+func _on_blackjack_draw_card_sprite(card: Variant, role: Variant) -> void:
+	var card_sprite = deck.sprite_frames.get_frame_texture("default", card)
+	if role == 0: #Player
+		player_hand.append(card_sprite)
+	if role == 1: #Dealer
+		dealer_hand.append(card_sprite)
+		
+	card_drawn = true
+	
+func _process(delta: float) -> void:
+	
+	if card_drawn:
+		draw_player_hand()
+		draw_dealer_hand()
+		card_drawn = false
+	
+func draw_player_hand():
+	var player_position = player_marker.position
+	for card in player_hand:
+		
+		var card_sprite = Sprite2D.new()
+		card_sprite.centered = false
+		card_sprite.texture = card
+		add_child(card_sprite)
+		card_sprite.position = player_position
+		player_position.x += 64
+		print("Card drawn player")
+
+func draw_dealer_hand():
+	var dealer_position = dealer_marker.position
+	for card in dealer_hand:
+		
+		var card_sprite = Sprite2D.new()
+		card_sprite.centered = false
+		card_sprite.texture = card
+		add_child(card_sprite)
+		card_sprite.position = dealer_position
+		dealer_position.x += 64
+		print("Card drawn deasler")
+		

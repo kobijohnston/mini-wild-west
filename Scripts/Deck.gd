@@ -14,11 +14,17 @@ func create_deck():
 				"suit": suit,
 				"rank": rank,
 				"face down": false,
-				"sprite": get_card_sprite(self)
+				"sprite": 0
 			}
 			deck.append(card)
+	print(deck)
+		
+	for card in deck:
+		card["sprite"] = get_card_sprite(card)
 
 func draw_card():
+	if deck.is_empty():
+		print("Deck is empty")
 	var card = deck[0]
 	deck.remove_at(0)
 	return card
