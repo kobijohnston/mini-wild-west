@@ -508,6 +508,9 @@ position = Vector2(256, 320)
 [node name="Player Marker" type="Marker2D" parent="Cards"]
 position = Vector2(256, 704)
 
+[connection signal="dealer_turn_start" from="." to="Cards" method="_on_blackjack_dealer_turn_start"]
 [connection signal="draw_card_sprite" from="." to="Cards" method="_on_blackjack_draw_card_sprite"]
+[connection signal="pressed" from="Side Buttons/Hit Button" to="." method="_on_hit_button_pressed"]
+[connection signal="pressed" from="Side Buttons/Stand Button" to="." method="_on_stand_button_pressed"]
 [connection signal="pressed" from="Side Buttons/Quit Button" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Betting/Bet Button" to="." method="_on_bet_button_pressed"]

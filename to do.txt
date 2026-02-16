@@ -1,14 +1,7 @@
 NEXT UP TO DO - BLACKJACK:
 	
-	-Draw the cards art
-	-State machine:
-		-SETUP -> make it so player pauses, and make shortcut to game for debugging 
-		-BET 
-		-DEAL
-		-PLAYER TURN
-		-DEALER TURN
-	-Deck and cards class 
-	
+	-Figure out why dealer face down card wont turn
+	-Fix dealer turn
 	
 	
 
