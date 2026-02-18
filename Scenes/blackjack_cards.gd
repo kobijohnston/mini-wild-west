@@ -7,6 +7,7 @@ var dealer_hand = []
 var player_hand = []
 
 var card_drawn = false
+var face_down_card
 
 func _on_blackjack_draw_card_sprite(card: Variant, role: Variant) -> void:
 	var card_sprite = deck.sprite_frames.get_frame_texture("default", card["sprite"])
@@ -15,6 +16,8 @@ func _on_blackjack_draw_card_sprite(card: Variant, role: Variant) -> void:
 	if role == 0: #Player
 		player_hand.append(card_sprite)
 	if role == 1: #Dealer
+		if dealer_hand.size() == 1:
+			face_down_card = card
 		dealer_hand.append(card_sprite)
 		
 	card_drawn = true
@@ -48,5 +51,6 @@ func draw_dealer_hand():
 		
 
 
-func _on_blackjack_dealer_turn_start() -> void:
-	pass # Replace with function body.
+func _on_blackjack_dealer_started_signal() -> void:
+	dealer_hand[1] = deck.sprite_frames.get_frame_texture("default", face_down_card["sprite"])
+	card_drawn = true

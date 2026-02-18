@@ -8,10 +8,11 @@ var hands_dealt = false
 var dealer_started = false
 @onready var betting: Control = $Betting
 @onready var bet_button: Button = $"Betting/Bet Button"
-@onready var bet_value: SpinBox = $Betting/SpinBox
+@onready var bet_value: SpinBox = $"Betting/Bet Value"
+@onready var result_label: Label = $Result
 
 signal draw_card_sprite(card, role)
-signal dealer_turn_start()
+signal dealer_started_signal
 
 var player = {
 	"hand": [],
@@ -100,14 +101,16 @@ func player_turn():
 		change_state(Game_State.DEALER_TURN)
 
 func dealer_turn():
-	dealer_turn_start.emit()
-	print(calculate_hand_value(dealer["hand"]))
+	
 	for card in dealer["hand"]:
 		card["face down"] = false
+		
+	dealer_started = true
+	dealer_started_signal.emit()
 	if player["bust"]:
 		change_state(Game_State.RESULT)
 		
-	var hand_value = calculate_hand_value(player["hand"])
+	var hand_value = calculate_hand_value(dealer["hand"])
 	if hand_value < 17:
 		var new_card = deck.draw_card()
 		dealer["hand"].append(new_card)
@@ -116,9 +119,10 @@ func dealer_turn():
 		dealer["standing"] = true
 	elif hand_value > 21:
 		dealer["bust"] = true
-		
+		print("Dealer Bust")
 	if dealer["standing"]:
 		change_state(Game_State.RESULT)
+		dealer_started = false
 	else:
 		dealer_turn()
 
@@ -151,21 +155,19 @@ func calculate_hand_value(hand):
 		
 func result():
 	if player["bust"]:
-		pass # player bust stuff
+		result_label.text = "Bust!\nYou Lose!"
+		return
 	if dealer["bust"]:
-		pass # dealer bust stuff
+		result_label.text = "You Win!\nWinnings: " + str(player["bet"] * 2)
+		return
 	var player_hand_value = calculate_hand_value(player["hand"])
 	var dealer_hand_value = calculate_hand_value(dealer["hand"])
 	if player_hand_value == dealer_hand_value:
-		#draw
-		pass
+		result_label.text = "Draw!"
 	elif player_hand_value > dealer_hand_value:
-		#win
-		pass
+		result_label.text = "You Win!\nWinnings: " + str(player["bet"] * 2)
 	elif dealer_hand_value > player_hand_value:
-		#loss
-		pass
-	pass
+		result_label.text = "You Lose!"
 	
 func change_state(state):
 	current_state = state

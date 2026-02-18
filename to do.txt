@@ -1,7 +1,7 @@
 NEXT UP TO DO - BLACKJACK:
 	
-	-Figure out why dealer face down card wont turn
-	-Fix dealer turn
+	-Fix dealer not busting
+	
 	
 	
 

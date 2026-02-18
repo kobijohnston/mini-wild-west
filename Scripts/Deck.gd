@@ -17,7 +17,6 @@ func create_deck():
 				"sprite": 0
 			}
 			deck.append(card)
-	print(deck)
 		
 	for card in deck:
 		card["sprite"] = get_card_sprite(card)
