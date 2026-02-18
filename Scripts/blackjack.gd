@@ -117,7 +117,7 @@ func dealer_turn():
 		draw_card_sprite.emit(new_card, Role.DEALER)
 	if hand_value >= 17:
 		dealer["standing"] = true
-	elif hand_value > 21:
+	if hand_value > 21:
 		dealer["bust"] = true
 		print("Dealer Bust")
 	if dealer["standing"]:
@@ -177,7 +177,7 @@ func _on_quit_button_pressed() -> void:
 	queue_free()
 	
 func _on_bet_button_pressed() -> void:
-	player["bet"] = bet_value
+	player["bet"] = bet_value.value
 	betting.visible = false
 	change_state(Game_State.DEAL)
 
