@@ -478,6 +478,8 @@ offset_left = 1024.0
 offset_top = 448.0
 offset_right = 1109.6425
 offset_bottom = 474.24
+min_value = 1.0
+value = 1.0
 
 [node name="Label2" type="Label" parent="Betting"]
 layout_mode = 0
@@ -507,20 +509,41 @@ position = Vector2(256, 320)
 [node name="Player Marker" type="Marker2D" parent="Cards"]
 position = Vector2(256, 704)
 
-[node name="Result" type="Label" parent="."]
+[node name="End Game" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Result" type="Label" parent="End Game"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.033
 anchor_bottom = 0.021000002
 offset_left = 832.0
-offset_top = 768.0
+offset_top = 448.0
 offset_right = 1280.64
-offset_bottom = 873.32
+offset_bottom = 553.32
 theme_override_font_sizes/font_size = 46
 horizontal_alignment = 1
 
+[node name="New Game" type="Button" parent="End Game"]
+layout_mode = 0
+offset_left = 960.0
+offset_top = 704.0
+offset_right = 1152.0
+offset_bottom = 832.0
+theme_override_font_sizes/font_size = 40
+text = "New 
+Game"
+
 [connection signal="dealer_started_signal" from="." to="Cards" method="_on_blackjack_dealer_started_signal"]
 [connection signal="draw_card_sprite" from="." to="Cards" method="_on_blackjack_draw_card_sprite"]
+[connection signal="new_game" from="." to="Cards" method="_on_blackjack_new_game"]
 [connection signal="pressed" from="Side Buttons/Hit Button" to="." method="_on_hit_button_pressed"]
 [connection signal="pressed" from="Side Buttons/Stand Button" to="." method="_on_stand_button_pressed"]
+[connection signal="pressed" from="Side Buttons/Double Down Button" to="." method="_on_double_down_button_pressed"]
 [connection signal="pressed" from="Side Buttons/Quit Button" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Betting/Bet Button" to="." method="_on_bet_button_pressed"]
+[connection signal="pressed" from="End Game/New Game" to="." method="_on_new_game_pressed"]

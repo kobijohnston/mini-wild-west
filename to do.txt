@@ -1,14 +1,8 @@
 NEXT UP TO DO - BLACKJACK:
 	
-	-Fix dealer not busting
+	-Natural blackjack 
+	-Play again option
 	
-	
-	
-
-
-
-
-
 
 Feature wishlist:
 	-Lawmen that respond to you shooting innocents or them 
@@ -29,7 +23,7 @@ Think about:
 	-Character rescale to 16x32?
 	-Completion for each town:
 		-Hunt down all outlaws in the town
-		-Bankrupt the blackjack dealer
+		-Bankrupt the blackjack dealer --> have a way of cheating maybe?
 		-Win a game of poker
 		-Buy the special item from that town
 		-Kill all the lawmen in the town

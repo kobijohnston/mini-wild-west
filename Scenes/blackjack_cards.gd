@@ -33,6 +33,7 @@ func draw_player_hand():
 	var player_position = player_marker.position
 	for card in player_hand:
 		var card_sprite = Sprite2D.new()
+		card_sprite.add_to_group("Blackjack Cards")
 		card_sprite.centered = false
 		card_sprite.texture = card
 		add_child(card_sprite)
@@ -43,14 +44,20 @@ func draw_dealer_hand():
 	var dealer_position = dealer_marker.position
 	for card in dealer_hand:
 		var card_sprite = Sprite2D.new()
+		card_sprite.add_to_group("Blackjack Cards")
 		card_sprite.centered = false
 		card_sprite.texture = card
 		add_child(card_sprite)
 		card_sprite.position = dealer_position
 		dealer_position.x += 64
-		
-
 
 func _on_blackjack_dealer_started_signal() -> void:
 	dealer_hand[1] = deck.sprite_frames.get_frame_texture("default", face_down_card["sprite"])
 	card_drawn = true
+	
+func _on_blackjack_new_game() -> void:
+	for child in get_children():
+		if child.is_in_group("Blackjack Cards"):
+			child.queue_free()
+	dealer_hand.clear()
+	player_hand.clear()
