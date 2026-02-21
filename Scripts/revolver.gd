@@ -25,24 +25,40 @@ func _process(delta: float):
 
 func shoot(position, rotation):
 	if ready_to_shoot and not reloading:
-		if ammo > 0:
-			var bullet = bullet_scene.instantiate()
-			bullet.position = marker_2d.global_position
-			bullet.rotation = marker_2d.global_rotation
-			bullet.shooter = get_parent()
-			get_tree().current_scene.add_child(bullet)
-			ammo -= 1
-			GlobalSignal.ammo_changed.emit(-1)
-			ready_to_shoot = false
-		else:
-			reload()
+		var bullet = bullet_scene.instantiate()
+		bullet.position = marker_2d.global_position
+		bullet.rotation = marker_2d.global_rotation
+		bullet.shooter = get_parent()
+		get_tree().current_scene.add_child(bullet)
+		ammo -= 1
+		GlobalSignal.ammo_changed.emit(-1)
+		ready_to_shoot = false
 
-func reload():
+func reload(player_ammo):
 	if ammo == MAX_AMMO:
-		return  
-	reloading = true
-	ammo = MAX_AMMO
-	GlobalSignal.reload.emit(Revolver)
+		return
+	if player_ammo == 0:
+		return
+	else:
+		if ammo == 0:
+			if player_ammo >= MAX_AMMO:
+				reloading = true
+				ammo = MAX_AMMO
+				GlobalSignal.reload.emit(Revolver, MAX_AMMO)
+			elif player_ammo < MAX_AMMO:
+				reloading = true
+				ammo = player_ammo
+				GlobalSignal.reload.emit(Revolver, player_ammo)
+		else:
+			var ammo_to_reload = MAX_AMMO - ammo
+			if player_ammo >= ammo_to_reload:
+				reloading = true
+				ammo += ammo_to_reload
+				GlobalSignal.reload.emit(Revolver, ammo_to_reload)
+			if ammo_to_reload > player_ammo:
+				reloading = true
+				ammo = player_ammo
+				GlobalSignal.reload.emit(Revolver, player_ammo)
 
-func _on_reload_finished():
+func _on_reload_finished(ammo):
 	reloading = false

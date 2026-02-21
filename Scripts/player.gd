@@ -9,6 +9,12 @@ var last_tooltip = current_tooltip
 var aiming_setup = false
 var paused = false
 
+var stats = {
+	"health": 100,
+	"money": 10,
+	"ammo": 36
+}
+
 @export var speed = 80 * 4
 var character_direction : Vector2
 
@@ -21,6 +27,7 @@ var revolver_scene = preload("res://Scenes/Weapons/revolver.tscn")
 func _ready():
 	GlobalSignal.near_blackjack.connect(_on_near_blackjack)
 	GlobalSignal.unpause.connect(_on_unpause)
+	GlobalSignal.reload_finished.connect(_on_reload_finished)
 
 func _physics_process(delta):
 
@@ -56,7 +63,6 @@ func movement():
 		velocity = velocity.move_toward(Vector2.ZERO, speed)
 	if current_state == Player_State.FREE and Input.is_action_just_pressed("shoot"):
 		change_state(Player_State.AIMING)
-		print("Weapon Drawn")
 	move_and_slide()
 
 func aiming():
@@ -83,12 +89,15 @@ func aiming():
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
 	if Input.is_action_just_pressed("reload"):
-		current_weapon.reload()
+		current_weapon.reload(stats["ammo"])
 
 func shoot():
-	var mouse_pos = get_global_mouse_position()
-	var aim_direction = (mouse_pos - global_position).normalized()
-	current_weapon.shoot(global_position, aim_direction)
+	if current_weapon.ammo > 0:
+		var mouse_pos = get_global_mouse_position()
+		var aim_direction = (mouse_pos - global_position).normalized()
+		current_weapon.shoot(global_position, aim_direction)
+	else:
+		current_weapon.reload(stats["ammo"])
 
 func pause():
 	last_state = current_state
@@ -111,7 +120,6 @@ func change_state(state):
 func _on_near_blackjack(is_near_blackjack):
 	if is_near_blackjack:
 		current_tooltip = Tooltips.PLAY_BLACKJACK
-		print("Play Blackjack")
 	else:
 		current_tooltip = last_tooltip
 		
@@ -119,3 +127,7 @@ func _on_unpause():
 	print(last_state)
 	change_state(last_state)
 	print("Unpause")
+
+func _on_reload_finished(ammo):
+	stats["ammo"] -= ammo
+	GlobalSignal.player_ammo_changed.emit(stats["ammo"])

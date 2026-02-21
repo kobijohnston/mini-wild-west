@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://ctuqpujhwndd2"]
 
-[ext_resource type="Script" uid="uid://0gt4makcpmw" path="res://Scripts/hud.gd" id="1_jo1ms"]
+[ext_resource type="Script" uid="uid://0gt4makcpmw" path="res://Scripts/Globals/hud.gd" id="1_jo1ms"]
 [ext_resource type="Texture2D" uid="uid://bo2ghorfhotdy" path="res://Assets/Sprites/revolver_barrell.png" id="1_sd512"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jo1ms"]
@@ -136,3 +136,12 @@ offset_right = 248.0
 offset_bottom = 199.0
 theme_override_font_sizes/font_size = 22
 text = "[ Space ] Play Blackjack"
+
+[node name="Ammo Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = -7.0
+offset_right = 177.0
+offset_bottom = 39.0
+theme_override_font_sizes/font_size = 33
+text = "Ammo: 36"

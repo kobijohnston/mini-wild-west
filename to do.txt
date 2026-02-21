@@ -1,12 +1,15 @@
-NEXT UP TO DO - BLACKJACK:
+NEXT UP TO DO - MONEY:
 	
-	-Natural blackjack 
-	-Play again option
+	-Before money, test stats integrating with UI using ammo
+	-Make money variable, tied to player
+	-HUD display money
+	-Integrate money with Blackjack
+	-Create shop
 	
 
 Feature wishlist:
 	-Lawmen that respond to you shooting innocents or them 
-	-Money
+	-Money 
 	-General store: Sells food for healing, guns, ammunition
 	-Blackjack table in the saloon
 	-Bounty posters: Interacting spawns an outlaw in the town you can hunt for money
