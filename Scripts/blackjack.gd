@@ -1,17 +1,23 @@
 extends CanvasLayer
 
-enum Game_State {SETUP, BET, DEAL, PLAYER_TURN, DEALER_TURN, RESULT}
+enum Game_State {SETUP, BET, DEAL, PLAYER_TURN, DEALER_TURN, RESULT, QUIT}
 enum Role { PLAYER, DEALER }
 var current_state = Game_State.SETUP
+var last_state = current_state
 var deck = Deck.new()
 var hands_dealt := false
 var dealer_started := false
+var winnings_dealt := false
+var player_money = 0.0
 
 @onready var betting: Control = $Betting
 @onready var bet_button: Button = $"Betting/Bet Button"
 @onready var bet_value: SpinBox = $"Betting/Bet Value"
 @onready var end_game: Control = $"End Game"
 @onready var result_label: Label = $"End Game/Result"
+@onready var quit_menu: Control = $"Quit Menu"
+@onready var quit_menu_quit_button: Button = $"Quit Menu/Quit Menu Quit Button"
+@onready var quit_menu_back_button: Button = $"Quit Menu/Quit Menu Back Button"
 
 signal draw_card_sprite(card, role)
 signal dealer_started_signal
@@ -38,7 +44,6 @@ func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
-	
 	match current_state:
 		Game_State.SETUP:
 			setup_game()
@@ -53,11 +58,16 @@ func _process(delta: float) -> void:
 			if not dealer_started:
 				dealer_turn()
 		Game_State.RESULT:
-			result()
+			if not winnings_dealt:
+				result()
+		Game_State.QUIT:
+			quit_state()
 	
 
 func setup_game():
 	
+	winnings_dealt = false
+	print("Player Money: " + str(player_money))
 	player = {
 		"hand": [],
 		"bet": 0,
@@ -125,7 +135,7 @@ func dealer_turn():
 	await timer.timeout
 	timer.queue_free()
 	
-	if player["bust"] or player["five card charlie"] or player["natural blackjack"]:
+	if player["bust"] or player["five card charlie"] or player["natural blackjack"] or dealer["hand"].size() == 5:
 		dealer["standing"] = true
 	
 	var hand_value = calculate_hand_value(dealer["hand"])
@@ -141,7 +151,6 @@ func dealer_turn():
 			dealer["standing"] = true
 		if hand_value > 21:
 			dealer["bust"] = true
-			print("Dealer Bust")
 		
 	if dealer["standing"]:
 		change_state(Game_State.RESULT)
@@ -178,45 +187,68 @@ func calculate_hand_value(hand):
 		
 func result():
 	end_game.visible = true
-	if player["bust"]:
+	winnings_dealt = true
+	if player["bust"]: #--------------------------------------------------------------------------LOSS
 		result_label.text = "Bust!\nYou Lose!"
 		return
-	if dealer["bust"]:
+	if dealer["bust"]:#---------------------------------------------------------------------------WIN
 		result_label.text = "You Win!\nWinnings: " + str(player["bet"] * 2)
+		adjust_player_money(player["bet"] * 2)
 		return
 	
 	var player_hand_value = calculate_hand_value(player["hand"])
 	var dealer_hand_value = calculate_hand_value(dealer["hand"])
 	
-	if player["five card charlie"]:
+	if player["five card charlie"]: #-------------------------------------------------------------WIN
 		result_label.text = "Five Card Charlie!\nYou win! Winnings: " + str(player["bet"] * 2)
+		adjust_player_money(player["bet"] * 2)
 	else:
 		if player_hand_value == dealer_hand_value: #----------------------------------------------DRAW
 			result_label.text = "Draw!"
+			adjust_player_money(player["bet"])
 		elif player_hand_value > dealer_hand_value:  #--------------------------------------------NORMAL WIN (2:1)
 			result_label.text = "You Win!\nWinnings: " + str(player["bet"] * 2)
+			adjust_player_money(player["bet"] * 2)
 		elif dealer_hand_value > player_hand_value:  #--------------------------------------------LOSS
 			result_label.text = "You Lose!"
 		elif player["natural blackjack"] or dealer["natural blackjack"]:
 			if dealer["natural blackjack"] and player["natural blackjack"]:  #--------------------DRAW
 				result_label.text = "Draw!"
+				adjust_player_money(player["bet"])
 			elif dealer["natural blackjack"] and not player["natural blackjack"]: #---------------LOSS
 				result_label.text = "You Lose!"
 			elif player["natural blackjack"] and not dealer["natural blackjack"]: #---------------NATURAL WIN (3:2)
 				result_label.text = "Natural Blackjack!\nWinnings: " + str(player["bet"] * 1.5)
+				adjust_player_money(player["bet"] * 1.5)
+
+func adjust_player_money(winnings):
+	GlobalSignal.change_money.emit(winnings)
+	player_money += winnings
+
+func quit_state():
+	quit_menu.visible = true
 	
 func change_state(state):
+	last_state = current_state
 	current_state = state
+
+func set_money(money):
+	player_money = money
 	
 func _on_quit_button_pressed() -> void:
-	#make it so player loses bet if quit during turn
-	GlobalSignal.unpause.emit()
-	queue_free()
+	if current_state == Game_State.SETUP or current_state == Game_State.BET or current_state == Game_State.RESULT:
+		GlobalSignal.unpause.emit()
+		queue_free()
+	else:
+		change_state(Game_State.QUIT)
 
 func _on_bet_button_pressed() -> void:
-	player["bet"] = bet_value.value
-	betting.visible = false
-	change_state(Game_State.DEAL)
+	if bet_value.value <= player_money:
+		player["bet"] = bet_value.value
+		adjust_player_money(-player["bet"])
+		print("Player Money: " + str(player_money))
+		betting.visible = false
+		change_state(Game_State.DEAL)
 
 func _on_hit_button_pressed() -> void:
 	if current_state == Game_State.PLAYER_TURN:
@@ -229,11 +261,13 @@ func _on_stand_button_pressed() -> void:
 		player["standing"] = true
 
 func _on_double_down_button_pressed() -> void:
-	if player["hand"].size() == 2 and current_state == Game_State.PLAYER_TURN:
+	if player["hand"].size() == 2 and current_state == Game_State.PLAYER_TURN and player_money >= player["bet"]:
+		adjust_player_money(-player["bet"])
+		player["bet"] *= 2
+		print("Player Money: " + str(player_money))
 		var new_card = deck.draw_card()
 		player["hand"].append(new_card)
 		draw_card_sprite.emit(new_card, Role.PLAYER)
-		player["bet"] *= 2
 		player["standing"] = true
 
 func _on_new_game_pressed() -> void:
@@ -241,3 +275,13 @@ func _on_new_game_pressed() -> void:
 		end_game.visible = false
 		new_game.emit()
 		change_state(Game_State.SETUP)
+
+func _on_quit_menu_quit_button_pressed() -> void:
+	if current_state == Game_State.QUIT:
+		GlobalSignal.unpause.emit()
+		GlobalSignal.change_money.emit(-player["bet"])
+		queue_free()
+
+func _on_quit_menu_back_button_pressed() -> void:
+	change_state(last_state)
+	quit_menu.visible = false

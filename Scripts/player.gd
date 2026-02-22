@@ -28,7 +28,7 @@ func _ready():
 	GlobalSignal.near_blackjack.connect(_on_near_blackjack)
 	GlobalSignal.unpause.connect(_on_unpause)
 	GlobalSignal.reload_finished.connect(_on_reload_finished)
-
+	GlobalSignal.change_money.connect(_on_change_money)
 func _physics_process(delta):
 
 	match current_state:
@@ -51,6 +51,7 @@ func _physics_process(delta):
 				var blackjack_scene = preload("res://Scenes/blackjack.tscn")
 				var blackjack_game = blackjack_scene.instantiate()
 				get_tree().current_scene.add_child(blackjack_game)
+				blackjack_game.set_money(stats["money"])
 				change_state(Player_State.PAUSED)
 
 func movement():
@@ -131,3 +132,13 @@ func _on_unpause():
 func _on_reload_finished(ammo):
 	stats["ammo"] -= ammo
 	GlobalSignal.player_ammo_changed.emit(stats["ammo"])
+	
+func _on_change_money(change_by):
+	stats["money"] += round_money(change_by)
+	GlobalSignal.player_money_changed.emit(stats["money"])
+	
+func round_money(money) -> float:
+	var rounded_money = snapped(money, 0.01)
+	return rounded_money
+	
+	

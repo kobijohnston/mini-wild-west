@@ -3,6 +3,7 @@ extends CanvasLayer
 @onready var revolver_barrell: AnimatedSprite2D = $"Control/Revolver Barrell"
 @onready var tooltip_label: Label = $"Control/Tooltip"
 @onready var ammo_label: Label = $"Control/Ammo Label"
+@onready var money_label: Label = $"Control/Money Label"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,13 +11,13 @@ func _ready() -> void:
 	GlobalSignal.reload.connect(_on_reload)
 	GlobalSignal.show_tooltip.connect(_on_show_tooltip)
 	GlobalSignal.player_ammo_changed.connect(_on_player_ammo_changed)
+	GlobalSignal.player_money_changed.connect(_on_player_money_changed)
 	
 func _on_ammo_changed(ammo):
 	revolver_barrell.frame += ( -1 * ammo)
 	
 func _on_player_ammo_changed(new_ammo_value):
 	ammo_label.text = "Ammo: " + str(new_ammo_value)
-
 
 func _on_reload(weapon, ammo):
 	match weapon:
@@ -28,6 +29,9 @@ func _on_reload(weapon, ammo):
 			await revolver_barrell.animation_finished
 			revolver_barrell.animation = "default"
 			GlobalSignal.reload_finished.emit(ammo)
+
+func _on_player_money_changed(money):
+	money_label.text = "$" + str(money)
 	
 func _on_show_tooltip(tooltip):
 	match tooltip:

@@ -145,3 +145,12 @@ offset_right = 177.0
 offset_bottom = 39.0
 theme_override_font_sizes/font_size = 33
 text = "Ammo: 36"
+
+[node name="Money Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 1756.0
+offset_top = 122.0
+offset_right = 1919.0
+offset_bottom = 172.0
+theme_override_font_sizes/font_size = 34
+text = "$10"

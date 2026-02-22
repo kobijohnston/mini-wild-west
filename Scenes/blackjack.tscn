@@ -386,14 +386,19 @@ animations = [{
 [node name="Blackjack" type="CanvasLayer"]
 script = ExtResource("1_45x14")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Dark Overlay" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1088.0
+color = Color(0, 0, 0, 0.6666667)
+
+[node name="Main Background" type="ColorRect" parent="."]
 offset_left = 192.0
 offset_top = 128.0
 offset_right = 1728.0
 offset_bottom = 960.0
 color = Color(0.105882354, 0.38039216, 0.16078432, 0.92941177)
 
-[node name="Label" type="Label" parent="."]
+[node name="Player Label" type="Label" parent="."]
 offset_left = 384.0
 offset_top = 576.0
 offset_right = 523.0
@@ -481,7 +486,7 @@ offset_bottom = 474.24
 min_value = 1.0
 value = 1.0
 
-[node name="Label2" type="Label" parent="Betting"]
+[node name="Your Stake Label" type="Label" parent="Betting"]
 layout_mode = 0
 offset_left = 960.0
 offset_top = 320.0
@@ -538,6 +543,61 @@ theme_override_font_sizes/font_size = 40
 text = "New 
 Game"
 
+[node name="Quit Menu" type="Control" parent="."]
+visible = false
+layout_mode = 3
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Quit Menu Dark Overlay" type="ColorRect" parent="Quit Menu"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 128.0
+offset_right = 1728.0
+offset_bottom = 960.0
+color = Color(0, 0, 0, 0.6666667)
+
+[node name="Quit Menu Bg" type="ColorRect" parent="Quit Menu"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 256.0
+offset_right = 1472.0
+offset_bottom = 832.0
+color = Color(0.105882354, 0.38039216, 0.16078432, 1)
+
+[node name="Quit Label" type="Label" parent="Quit Menu"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 256.0
+offset_right = 1472.0
+offset_bottom = 640.0
+theme_override_font_sizes/font_size = 60
+text = "If you quit now, you
+ will lose your stake!
+
+Are you sure you want to quit?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quit Menu Quit Button" type="Button" parent="Quit Menu"]
+layout_mode = 0
+offset_left = 1088.0
+offset_top = 640.0
+offset_right = 1280.0
+offset_bottom = 768.0
+theme_override_colors/font_color = Color(0.99999994, 0.9641332, 0.96533984, 1)
+theme_override_font_sizes/font_size = 46
+text = "Quit"
+
+[node name="Quit Menu Back Button" type="Button" parent="Quit Menu"]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 640.0
+offset_right = 832.0
+offset_bottom = 768.0
+theme_override_font_sizes/font_size = 46
+text = "Back"
+
 [connection signal="dealer_started_signal" from="." to="Cards" method="_on_blackjack_dealer_started_signal"]
 [connection signal="draw_card_sprite" from="." to="Cards" method="_on_blackjack_draw_card_sprite"]
 [connection signal="new_game" from="." to="Cards" method="_on_blackjack_new_game"]
@@ -547,3 +607,5 @@ Game"
 [connection signal="pressed" from="Side Buttons/Quit Button" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="Betting/Bet Button" to="." method="_on_bet_button_pressed"]
 [connection signal="pressed" from="End Game/New Game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="Quit Menu/Quit Menu Quit Button" to="." method="_on_quit_menu_quit_button_pressed"]
+[connection signal="pressed" from="Quit Menu/Quit Menu Back Button" to="." method="_on_quit_menu_back_button_pressed"]

@@ -1,10 +1,9 @@
-NEXT UP TO DO - MONEY:
+	NEXT UP TO DO - SHOP:
 	
-	-Before money, test stats integrating with UI using ammo
-	-Make money variable, tied to player
-	-HUD display money
-	-Integrate money with Blackjack
-	-Create shop
+	-Draw background
+	-Shop area class same as blackjack 
+	-Think about moving Q to ineract into those classes? eg if player in area if input == q 
+	-Shop menu class
 	
 
 Feature wishlist:
