@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 enum Player_State { FREE, AIMING, PAUSED }
-enum Tooltips { FREE, AIMING, PLAY_BLACKJACK }
+enum Tooltips { FREE, AIMING, PLAY_BLACKJACK, NEAR_SHOP }
 var current_state = Player_State.FREE
 var current_tooltip = Tooltips.FREE
 var last_state = current_state
@@ -29,6 +29,8 @@ func _ready():
 	GlobalSignal.unpause.connect(_on_unpause)
 	GlobalSignal.reload_finished.connect(_on_reload_finished)
 	GlobalSignal.change_money.connect(_on_change_money)
+	GlobalSignal.near_shop_desk.connect(_on_near_shop_desk)
+	
 func _physics_process(delta):
 
 	match current_state:
@@ -53,6 +55,15 @@ func _physics_process(delta):
 				get_tree().current_scene.add_child(blackjack_game)
 				blackjack_game.set_money(stats["money"])
 				change_state(Player_State.PAUSED)
+		Tooltips.NEAR_SHOP:
+			GlobalSignal.show_tooltip.emit("Enter Shop")
+			if Input.is_action_just_pressed("select"):
+				pass
+				#var shop_scene = preload("res://Scenes/shop_menu.tscn")
+				#var shop_menu = shop_scene.instantiate()
+				#add_child(shop_menu)
+				#shop_menu.configure() --> pass through which shop and money and other things, inventory
+				#change_state(Player_State.PAUSED)
 
 func movement():
 	character_direction.x = Input.get_axis("left", "right")
@@ -121,6 +132,12 @@ func change_state(state):
 func _on_near_blackjack(is_near_blackjack):
 	if is_near_blackjack:
 		current_tooltip = Tooltips.PLAY_BLACKJACK
+	else:
+		current_tooltip = last_tooltip
+
+func _on_near_shop_desk(shop, is_near_shop_desk):
+	if is_near_shop_desk:
+		current_tooltip = Tooltips.NEAR_SHOP
 	else:
 		current_tooltip = last_tooltip
 		

@@ -4,6 +4,7 @@ extends Node
 #Tooltips
 signal show_tooltip(tooltip)
 signal near_blackjack(is_near_blackjack: bool)
+signal near_shop_desk(shop, is_near_shop: bool)
 #Ammo
 signal ammo_changed(ammo_changed_by)
 signal player_ammo_changed(new_ammo_value)

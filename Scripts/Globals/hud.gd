@@ -41,3 +41,5 @@ func _on_show_tooltip(tooltip):
 			tooltip_label.text = "[ Space ] Holster weapon"
 		"Play Blackjack":
 			tooltip_label.text = "[ Q ] Play Blackjack"
+		"Enter Shop":
+			tooltip_label.text = "[ Q ] General Store"

@@ -1,6 +1,5 @@
 	NEXT UP TO DO - SHOP:
 	
-	-Draw background
 	-Shop area class same as blackjack 
 	-Think about moving Q to ineract into those classes? eg if player in area if input == q 
 	-Shop menu class
