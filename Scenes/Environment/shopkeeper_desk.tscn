@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7q137e15dee7"]
+
+[ext_resource type="Texture2D" uid="uid://pnhlc1mcnk76" path="res://Assets/Sprites/shop_desk.png" id="1_0jp3i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_otumq"]
+size = Vector2(508, 56)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a5gs5"]
+radius = 64.0
+height = 308.0
+
+[node name="Shopkeeper Desk" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0jp3i")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(258, 32)
+shape = SubResource("RectangleShape2D_otumq")
+
+[node name="Shopkeeper Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shopkeeper Area"]
+position = Vector2(342, 64)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_a5gs5")
