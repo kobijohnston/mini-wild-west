@@ -1,0 +1,76 @@
+[gd_scene load_steps=2 format=3 uid="uid://dw3dx0v2uv01t"]
+
+[ext_resource type="Script" uid="uid://dcwakppbd7t62" path="res://Scripts/shop_menu.gd" id="1_25g0w"]
+
+[node name="Shop Menu" type="CanvasLayer"]
+script = ExtResource("1_25g0w")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 256.0
+offset_top = 192.0
+offset_right = 1664.0
+offset_bottom = 896.0
+color = Color(0.5662564, 0.780804, 0.70992446, 1)
+
+[node name="Buy Or Sell" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Enter Buy" type="Button" parent="Buy Or Sell"]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 640.0
+offset_right = 704.0
+offset_bottom = 768.0
+theme_override_font_sizes/font_size = 46
+text = "Buy"
+
+[node name="Enter Sell" type="Button" parent="Buy Or Sell"]
+layout_mode = 0
+offset_left = 1216.0
+offset_top = 640.0
+offset_right = 1408.0
+offset_bottom = 768.0
+theme_override_font_sizes/font_size = 46
+text = "Sell
+"
+
+[node name="Buy Menu" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Back from Buy" type="Button" parent="Buy Menu"]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 256.0
+offset_right = 448.0
+offset_bottom = 320.0
+theme_override_font_sizes/font_size = 30
+text = "Back"
+
+[node name="Sell Menu" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Back from Sell" type="Button" parent="Sell Menu"]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 256.0
+offset_right = 448.0
+offset_bottom = 320.0
+theme_override_font_sizes/font_size = 32
+text = "Back"
+
+[connection signal="pressed" from="Buy Or Sell/Enter Buy" to="." method="_on_enter_buy_pressed"]
+[connection signal="pressed" from="Buy Or Sell/Enter Sell" to="." method="_on_enter_sell_pressed"]
+[connection signal="pressed" from="Buy Menu/Back from Buy" to="." method="_on_back_from_buy_pressed"]
+[connection signal="pressed" from="Sell Menu/Back from Sell" to="." method="_on_back_from_sell_pressed"]

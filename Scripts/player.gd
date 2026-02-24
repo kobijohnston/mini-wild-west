@@ -59,11 +59,11 @@ func _physics_process(delta):
 			GlobalSignal.show_tooltip.emit("Enter Shop")
 			if Input.is_action_just_pressed("select"):
 				pass
-				#var shop_scene = preload("res://Scenes/shop_menu.tscn")
-				#var shop_menu = shop_scene.instantiate()
-				#add_child(shop_menu)
+				var shop_scene = preload("res://Scenes/Menus/shop_menu.tscn")
+				var shop_menu = shop_scene.instantiate()
+				add_child(shop_menu)
 				#shop_menu.configure() --> pass through which shop and money and other things, inventory
-				#change_state(Player_State.PAUSED)
+				change_state(Player_State.PAUSED)
 
 func movement():
 	character_direction.x = Input.get_axis("left", "right")

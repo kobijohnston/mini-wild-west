@@ -10,7 +10,7 @@
 [node name="Sprite2D" parent="." instance=ExtResource("1_qxrlw")]
 
 [node name="Player" parent="." instance=ExtResource("2_qxrlw")]
-position = Vector2(2816, 1984)
+position = Vector2(1728, 704)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 drag_horizontal_enabled = true
