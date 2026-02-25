@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bm8qg6h0gmd41"]
 
-[ext_resource type="Texture2D" uid="uid://d08uw6bm2tr6l" path="res://Assets/Sprites/bush.png" id="1_tld8b"]
+[ext_resource type="Texture2D" uid="uid://d08uw6bm2tr6l" path="res://Assets/Sprites/Environment Objects/bush.png" id="1_tld8b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kx7ng"]
 size = Vector2(64, 64)

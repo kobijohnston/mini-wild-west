@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cggdnekshwe8n"
-path="res://.godot/imported/blackjack_table.png-aa36aa4598b1b6bad4bc0232d563836e.ctex"
+uid="uid://d08uw6bm2tr6l"
+path="res://.godot/imported/bush.png-a3595ab3fc44fdaba913a6833dbb4b88.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/blackjack_table.png"
-dest_files=["res://.godot/imported/blackjack_table.png-aa36aa4598b1b6bad4bc0232d563836e.ctex"]
+source_file="res://Assets/Sprites/Environment Objects/bush.png"
+dest_files=["res://.godot/imported/bush.png-a3595ab3fc44fdaba913a6833dbb4b88.ctex"]
 
 [params]
 

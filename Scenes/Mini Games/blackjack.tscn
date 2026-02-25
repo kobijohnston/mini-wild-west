@@ -1,8 +1,8 @@
 [gd_scene load_steps=58 format=3 uid="uid://bwbwyta5vubcx"]
 
-[ext_resource type="Script" uid="uid://crs4lv00hkj3r" path="res://Scripts/blackjack.gd" id="1_45x14"]
-[ext_resource type="Script" uid="uid://bckmsmrtolorf" path="res://Scenes/blackjack_cards.gd" id="2_xjpjw"]
-[ext_resource type="Texture2D" uid="uid://dwpjkfu44d68" path="res://Assets/Sprites/deck_of_cards.png" id="3_05enk"]
+[ext_resource type="Script" uid="uid://crs4lv00hkj3r" path="res://Scripts/Mini Games/blackjack.gd" id="1_45x14"]
+[ext_resource type="Script" uid="uid://bckmsmrtolorf" path="res://Scripts/Mini Games/blackjack_cards.gd" id="2_xjpjw"]
+[ext_resource type="Texture2D" uid="uid://dwpjkfu44d68" path="res://Assets/Sprites/Backgrounds and Tilemaps/deck_of_cards.png" id="3_05enk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uem5w"]
 atlas = ExtResource("3_05enk")
@@ -546,6 +546,7 @@ Game"
 [node name="Quit Menu" type="Control" parent="."]
 visible = false
 layout_mode = 3
+anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 

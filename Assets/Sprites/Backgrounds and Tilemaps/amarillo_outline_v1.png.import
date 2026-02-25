@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d08uw6bm2tr6l"
-path="res://.godot/imported/bush.png-6049a8f9112f8b87d2a4d0715d05fe9a.ctex"
+uid="uid://c63dg88c03qya"
+path="res://.godot/imported/amarillo_outline_v1.png-b0a9cbdf163a8409d98549bef8a7bc77.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/bush.png"
-dest_files=["res://.godot/imported/bush.png-6049a8f9112f8b87d2a4d0715d05fe9a.ctex"]
+source_file="res://Assets/Sprites/Backgrounds and Tilemaps/amarillo_outline_v1.png"
+dest_files=["res://.godot/imported/amarillo_outline_v1.png-b0a9cbdf163a8409d98549bef8a7bc77.ctex"]
 
 [params]
 

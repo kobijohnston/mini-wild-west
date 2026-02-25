@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bdp0j3p5m535v"]
 
-[ext_resource type="Texture2D" uid="uid://cggdnekshwe8n" path="res://Assets/Sprites/blackjack_table.png" id="1_v56ml"]
-[ext_resource type="Script" uid="uid://5idl1g105nfj" path="res://Scripts/blackjack_area.gd" id="2_6vt1r"]
+[ext_resource type="Texture2D" uid="uid://cggdnekshwe8n" path="res://Assets/Sprites/Environment Objects/blackjack_table.png" id="1_v56ml"]
+[ext_resource type="Script" uid="uid://5idl1g105nfj" path="res://Scripts/Mini Games/blackjack_area.gd" id="2_6vt1r"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6vt1r"]
 radius = 61.0

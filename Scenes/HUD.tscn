@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://ctuqpujhwndd2"]
 
 [ext_resource type="Script" uid="uid://0gt4makcpmw" path="res://Scripts/Globals/hud.gd" id="1_jo1ms"]
-[ext_resource type="Texture2D" uid="uid://bo2ghorfhotdy" path="res://Assets/Sprites/revolver_barrell.png" id="1_sd512"]
+[ext_resource type="Texture2D" uid="uid://bo2ghorfhotdy" path="res://Assets/Sprites/UI/revolver_barrell.png" id="1_sd512"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jo1ms"]
 atlas = ExtResource("1_sd512")

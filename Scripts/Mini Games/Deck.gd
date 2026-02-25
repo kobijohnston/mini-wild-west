@@ -23,7 +23,7 @@ func create_deck():
 
 func draw_card():
 	if deck.is_empty():
-		print("Deck is empty")
+		print("ERROR: DECK EMPTY")
 	var card = deck[0]
 	deck.remove_at(0)
 	return card

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lnmtloheodux"
-path="res://.godot/imported/shop_bg_v1.png-c77bf744634516d372b2f6258bbd7388.ctex"
+uid="uid://i47lehucps5c"
+path="res://.godot/imported/saloon_bg_v1.png-3774be79b80fa9cfd1f1b67c26ae9444.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/shop_bg_v1.png"
-dest_files=["res://.godot/imported/shop_bg_v1.png-c77bf744634516d372b2f6258bbd7388.ctex"]
+source_file="res://Assets/Sprites/Backgrounds and Tilemaps/saloon_bg_v1.png"
+dest_files=["res://.godot/imported/saloon_bg_v1.png-3774be79b80fa9cfd1f1b67c26ae9444.ctex"]
 
 [params]
 
