@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c7q137e15dee7"]
 
 [ext_resource type="Texture2D" uid="uid://pnhlc1mcnk76" path="res://Assets/Sprites/Environment Objects/shop_desk.png" id="1_0jp3i"]
-[ext_resource type="Script" uid="uid://ccippgxg7iao7" path="res://Scripts/shopkeeper_area.gd" id="2_otumq"]
+[ext_resource type="Script" uid="uid://ccippgxg7iao7" path="res://Scripts/Shops/shopkeeper_area.gd" id="2_otumq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_otumq"]
 size = Vector2(508, 56)

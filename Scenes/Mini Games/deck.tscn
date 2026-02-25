@@ -1,6 +1,6 @@
 [gd_scene load_steps=57 format=3 uid="uid://d4b286bc4rb5u"]
 
-[ext_resource type="Script" uid="uid://covond5mus88l" path="res://Scripts/Deck.gd" id="1_yrerj"]
+[ext_resource type="Script" uid="uid://covond5mus88l" path="res://Scripts/Mini Games/Deck.gd" id="1_yrerj"]
 [ext_resource type="Texture2D" uid="uid://dwpjkfu44d68" path="res://Assets/Sprites/Backgrounds and Tilemaps/deck_of_cards.png" id="2_4y812"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xvpt4"]
