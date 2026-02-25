@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://i47lehucps5c" path="res://Assets/Sprites/saloon_bg_v1.png" id="2_8xpg0"]
 [ext_resource type="Texture2D" uid="uid://cjnv3q118yhi6" path="res://Assets/Sprites/wall_tilemap.png" id="3_8xpg0"]
 [ext_resource type="Texture2D" uid="uid://lnmtloheodux" path="res://Assets/Sprites/shop_bg_v1.png" id="3_kr5nf"]
-[ext_resource type="PackedScene" uid="uid://bdp0j3p5m535v" path="res://Scenes/blackjack_table.tscn" id="4_gbc2j"]
+[ext_resource type="PackedScene" uid="uid://bdp0j3p5m535v" path="res://Scenes/Mini Games/blackjack_table.tscn" id="4_gbc2j"]
 [ext_resource type="PackedScene" uid="uid://c7q137e15dee7" path="res://Scenes/Environment/shopkeeper_desk.tscn" id="6_wc3g0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8xpg0"]

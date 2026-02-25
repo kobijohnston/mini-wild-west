@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3w3bw6fbwag8"]
+
+[ext_resource type="PackedScene" uid="uid://bsui3q7glwydx" path="res://Scenes/Environment/test_map.tscn" id="1_7kta8"]
+[ext_resource type="PackedScene" uid="uid://wg28jfwqmear" path="res://Scenes/player.tscn" id="2_cj2bn"]
+[ext_resource type="PackedScene" uid="uid://ctuqpujhwndd2" path="res://Scenes/HUD.tscn" id="3_rkppb"]
+[ext_resource type="PackedScene" uid="uid://bm8qg6h0gmd41" path="res://Scenes/Environment/bush.tscn" id="4_b0tvw"]
+
+[node name="Game" type="Node"]
+
+[node name="Sprite2D" parent="." instance=ExtResource("1_7kta8")]
+
+[node name="Player" parent="." instance=ExtResource("2_cj2bn")]
+position = Vector2(1728, 704)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="Control" parent="." instance=ExtResource("3_rkppb")]
+
+[node name="StaticBody2D" parent="." instance=ExtResource("4_b0tvw")]
+position = Vector2(1408, 1344)
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("4_b0tvw")]
+position = Vector2(1536, 960)
+
+[node name="StaticBody2D3" parent="." instance=ExtResource("4_b0tvw")]
+position = Vector2(2048, 1344)

@@ -12,7 +12,8 @@ var paused = false
 var stats = {
 	"health": 100,
 	"money": 10,
-	"ammo": 36
+	"ammo": 36,
+	"inventory": [] 
 }
 
 @export var speed = 80 * 4
@@ -50,7 +51,7 @@ func _physics_process(delta):
 		Tooltips.PLAY_BLACKJACK:
 			GlobalSignal.show_tooltip.emit("Play Blackjack")
 			if Input.is_action_just_pressed("select"):
-				var blackjack_scene = preload("res://Scenes/blackjack.tscn")
+				var blackjack_scene = preload("res://Scenes/Mini Games/blackjack.tscn")
 				var blackjack_game = blackjack_scene.instantiate()
 				get_tree().current_scene.add_child(blackjack_game)
 				blackjack_game.set_money(stats["money"])
@@ -58,7 +59,6 @@ func _physics_process(delta):
 		Tooltips.NEAR_SHOP:
 			GlobalSignal.show_tooltip.emit("Enter Shop")
 			if Input.is_action_just_pressed("select"):
-				pass
 				var shop_scene = preload("res://Scenes/Menus/shop_menu.tscn")
 				var shop_menu = shop_scene.instantiate()
 				add_child(shop_menu)
@@ -144,7 +144,6 @@ func _on_near_shop_desk(shop, is_near_shop_desk):
 func _on_unpause():
 	print(last_state)
 	change_state(last_state)
-	print("Unpause")
 
 func _on_reload_finished(ammo):
 	stats["ammo"] -= ammo
