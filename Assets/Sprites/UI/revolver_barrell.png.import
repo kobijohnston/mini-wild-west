@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cexmq25mm5lv1"
-path="res://.godot/imported/crosshair.png-f9e1ed6841917a17a79f96f1872903eb.ctex"
+uid="uid://bo2ghorfhotdy"
+path="res://.godot/imported/revolver_barrell.png-101546b3a0f1c5c58d2da5b5dbb9a5e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/crosshair.png"
-dest_files=["res://.godot/imported/crosshair.png-f9e1ed6841917a17a79f96f1872903eb.ctex"]
+source_file="res://Assets/Sprites/UI/revolver_barrell.png"
+dest_files=["res://.godot/imported/revolver_barrell.png-101546b3a0f1c5c58d2da5b5dbb9a5e5.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bo2ghorfhotdy"
-path="res://.godot/imported/revolver_barrell.png-ab55556d9715d980c7c85da15a692ebb.ctex"
+uid="uid://b7d8pgprikttn"
+path="res://.godot/imported/revolver.png-aa005acb3938f4306675707488a7f1ad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/revolver_barrell.png"
-dest_files=["res://.godot/imported/revolver_barrell.png-ab55556d9715d980c7c85da15a692ebb.ctex"]
+source_file="res://Assets/Sprites/Weapons/revolver.png"
+dest_files=["res://.godot/imported/revolver.png-aa005acb3938f4306675707488a7f1ad.ctex"]
 
 [params]
 

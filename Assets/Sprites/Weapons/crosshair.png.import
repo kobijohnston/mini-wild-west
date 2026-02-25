@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://i47lehucps5c"
-path="res://.godot/imported/saloon_bg_v1.png-14ec93ec306f163da97c2bd1ce050ae2.ctex"
+uid="uid://cexmq25mm5lv1"
+path="res://.godot/imported/crosshair.png-42c4f068cd5807c4e174eaf4acc07ec4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/saloon_bg_v1.png"
-dest_files=["res://.godot/imported/saloon_bg_v1.png-14ec93ec306f163da97c2bd1ce050ae2.ctex"]
+source_file="res://Assets/Sprites/Weapons/crosshair.png"
+dest_files=["res://.godot/imported/crosshair.png-42c4f068cd5807c4e174eaf4acc07ec4.ctex"]
 
 [params]
 
