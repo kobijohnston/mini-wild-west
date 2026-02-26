@@ -12,3 +12,24 @@ grow_vertical = 2
 layout_mode = 0
 offset_right = 768.0
 offset_bottom = 128.0
+color = Color(1, 1, 1, 0.79607844)
+
+[node name="Item Name" type="Label" parent="."]
+layout_mode = 0
+offset_right = 384.0
+offset_bottom = 128.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "Item Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 576.0
+offset_right = 726.0
+offset_bottom = 128.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "$00.00"
+vertical_alignment = 1
