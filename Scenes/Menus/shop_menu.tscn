@@ -39,7 +39,6 @@ text = "Sell
 "
 
 [node name="Buy Menu" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -53,6 +52,16 @@ offset_right = 448.0
 offset_bottom = 320.0
 theme_override_font_sizes/font_size = 30
 text = "Back"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Buy Menu"]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 256.0
+offset_right = 1280.0
+offset_bottom = 832.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Buy Menu/ScrollContainer"]
+layout_mode = 2
 
 [node name="Sell Menu" type="Control" parent="."]
 visible = false

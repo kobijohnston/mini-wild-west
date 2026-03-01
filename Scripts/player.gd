@@ -16,9 +16,14 @@ var stats = {
 	"inventory": [] 
 }
 
-@export var speed = 80 * 4
+var sprite_scaling = 4
+@export var speed = 60 * sprite_scaling
+var sprint_multiplier = 1.5
 var character_direction : Vector2
-
+const SPRINT_TIME = 300 #frames
+var sprint_timer = SPRINT_TIME
+var sprinting = false
+var sprinting_set = false
 var crosshair_scene = preload("res://Scenes/Weapons/crosshair.tscn")
 var revolver_scene = preload("res://Scenes/Weapons/revolver.tscn")
 @onready var marker_2d: Marker2D = $Marker2D
@@ -70,9 +75,25 @@ func movement():
 	character_direction.y = Input.get_axis("up", "down")
 	character_direction = character_direction.normalized()
 	if character_direction:
+		if Input.is_action_pressed("shift"):
+			if sprint_timer > 0:
+				sprinting = true
+				sprint_timer -= 1
+			if not sprinting_set:
+				speed *= sprint_multiplier
+				sprinting_set = true
+		if Input.is_action_just_released("shift"):
+			speed /= sprint_multiplier
 		velocity = character_direction * speed
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, speed)
+		if sprinting:
+			if sprint_timer < SPRINT_TIME:
+				sprint_timer += 1
+			else:
+				sprinting = false
+				sprinting_set = false
+			
 	if current_state == Player_State.FREE and Input.is_action_just_pressed("shoot"):
 		change_state(Player_State.AIMING)
 	move_and_slide()
