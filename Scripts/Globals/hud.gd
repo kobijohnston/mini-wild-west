@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var tooltip_label: Label = $"Control/Tooltip"
 @onready var ammo_label: Label = $"Control/Ammo Label"
 @onready var money_label: Label = $"Control/Money Label"
+@onready var stamina_label: Label = $"Control/Stamina Label"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,6 +13,7 @@ func _ready() -> void:
 	GlobalSignal.show_tooltip.connect(_on_show_tooltip)
 	GlobalSignal.player_ammo_changed.connect(_on_player_ammo_changed)
 	GlobalSignal.player_money_changed.connect(_on_player_money_changed)
+	GlobalSignal.is_player_sprinting.connect(_on_player_sprinting)
 	
 func _on_ammo_changed(ammo):
 	revolver_barrell.frame += ( -1 * ammo)
@@ -32,6 +34,11 @@ func _on_reload(weapon, ammo):
 
 func _on_player_money_changed(money):
 	money_label.text = "$" + str(money)
+
+func _on_player_sprinting(is_sprinting, stamina):
+	# When this changes to a bar, use is_sprinting to have a different animation style for draining and recharging
+	stamina_label.text = "STAM: " + str(stamina)
+	
 	
 func _on_show_tooltip(tooltip):
 	match tooltip:

@@ -13,6 +13,8 @@ signal reload_finished(ammo_reloaded)
 #Money
 signal player_money_changed(new_amount)
 signal change_money(change_by)
+#Stamina
+signal is_player_sprinting(is_sprinting: bool, current_stamina)
 
 #---------------------------------Interactions---------------------------------
 signal play_blackjack()
