@@ -6,14 +6,15 @@ var current_state = Shop_State.START
 var last_state = current_state
 var shop_stock = []
 var item_cards = []
+var stock_refreshed = false
 @onready var buy_or_sell: Control = $"Buy Or Sell"
 @onready var buy_menu: Control = $"Buy Menu"
 @onready var sell_menu: Control = $"Sell Menu"
-var item_card_scene = preload("res://Scripts/shop_item.gd")
+@onready var stock_box: VBoxContainer = $"Buy Menu/ScrollContainer/VBoxContainer"
 
 func _ready() -> void:
 	# EXAMPLES
-	var item_scene = preload("res://Scripts/item.gd")
+	var item_scene = preload("res://item.gd")
 	
 	
 	var ammo_item = item_scene.create("Revolver Ammo", "Bullets for your revolver.", 0.05, 0, false)
@@ -36,6 +37,9 @@ func start_screen():
 
 func buy_screen():
 	buy_menu.visible = true
+	if not stock_refreshed:
+		draw_stock()
+		stock_refreshed = true
 
 func sell_screen():
 	sell_menu.visible = true
@@ -45,13 +49,14 @@ func change_state(state):
 	current_state = state
 
 func set_stock(stock):
-	#Stocked like [Item, how many items, ID for shop_item nodes]
-	#eg [[Ammo, 100, 1], [Whiskey, 5, 2]]
 	shop_stock = stock
 	
-func refresh_stock():
+func draw_stock():
 	for item in shop_stock:
-		pass # fucking figure out elsewhere
+		var item_card = Shop_Item.new()
+		item_card.create(item, item[1])
+		item_cards.append(item_card)
+		stock_box.add_child(item_card)
 		
 func _on_enter_buy_pressed() -> void:
 	change_state(Shop_State.BUY)

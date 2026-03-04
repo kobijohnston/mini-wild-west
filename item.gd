@@ -13,5 +13,6 @@ static func create(new_name, desc, new_price, sell, image) -> Item:
 	i.description = desc
 	i.price = new_price
 	i.sell_value = sell
-	i.sprite = image
+	if i == Texture2D:
+		i.sprite = image
 	return i
