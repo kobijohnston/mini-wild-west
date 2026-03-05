@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dx60g01vbdehx"]
 
-[ext_resource type="Script" uid="uid://cblnj001yd638" path="res://Scripts/shop_item.gd" id="1_mgqxb"]
+[ext_resource type="Script" uid="uid://cblnj001yd638" path="res://Scripts/Shops/shop_item.gd" id="1_mgqxb"]
 
 [node name="Shop Item" type="Control"]
 layout_mode = 3
@@ -27,7 +27,7 @@ text = "Item Name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="."]
+[node name="Price" type="Label" parent="."]
 layout_mode = 0
 offset_left = 576.0
 offset_right = 726.0

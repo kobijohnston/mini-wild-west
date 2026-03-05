@@ -39,6 +39,7 @@ text = "Sell
 "
 
 [node name="Buy Menu" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -62,6 +63,7 @@ offset_bottom = 832.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Buy Menu/ScrollContainer"]
 layout_mode = 2
+theme_override_constants/separation = 130
 
 [node name="Sell Menu" type="Control" parent="."]
 visible = false

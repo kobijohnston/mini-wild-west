@@ -1,6 +1,6 @@
 NEXT UP TO DO - SHOP:
-	- Get shop_item cards appearing on screen
-	- Make changes to Item class -> change to dictionary and add global enum for type of item
+	
+	- Make it so it changes when item is hovered over, just change opacity. 
 	- When an item is selected in the shop, make its description appear on the right side. Would be a container, something like item_info which is made visible when something is selected.
 	- When an item is selected in the shop, make the buy button appear.
 	- Buy button functionality, take money from player, give player item, -1 from the stock

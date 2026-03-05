@@ -10,15 +10,13 @@ var stock_refreshed = false
 @onready var buy_or_sell: Control = $"Buy Or Sell"
 @onready var buy_menu: Control = $"Buy Menu"
 @onready var sell_menu: Control = $"Sell Menu"
-@onready var stock_box: VBoxContainer = $"Buy Menu/ScrollContainer/VBoxContainer"
+@onready var buy_vbox: VBoxContainer = $"Buy Menu/ScrollContainer/VBoxContainer"
 
+@onready var shop_item_scene = preload("res://Scenes/Menus/shop_item.tscn")
 func _ready() -> void:
 	# EXAMPLES
-	var item_scene = preload("res://item.gd")
-	
-	
-	var ammo_item = item_scene.create("Revolver Ammo", "Bullets for your revolver.", 0.05, 0, false)
-	var whiskey = item_scene.create("Bush Whiskey", "The finest and oldest whiskey in the west, imported from Co. Antrim.\n\nPrevents your stamina bar from depleting for 20 seconds.", 1, 0.2, false)
+	var ammo_item = Item.new().create("Revolver Ammo", "Bullets for your revolver.", 0.05, GlobalEnums.Item_Type.BASE, 1, false, false, false)
+	var whiskey = Item.new().create("Bush Whiskey", "Imported from Co. Antrim.\n\nPrevents your stamina bar from depleting for 20 seconds.", 1, GlobalEnums.Item_Type.STAMINA, 300, false, false, false)
 	shop_stock.append([ammo_item, 100, 1])
 	shop_stock.append([whiskey, 5, 2])
 	
@@ -53,10 +51,9 @@ func set_stock(stock):
 	
 func draw_stock():
 	for item in shop_stock:
-		var item_card = Shop_Item.new()
-		item_card.create(item, item[1])
-		item_cards.append(item_card)
-		stock_box.add_child(item_card)
+		var shop_item = shop_item_scene.instantiate()
+		buy_vbox.add_child(shop_item)
+		shop_item.config(item[0], item[1])
 		
 func _on_enter_buy_pressed() -> void:
 	change_state(Shop_State.BUY)
