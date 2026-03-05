@@ -1,15 +1,18 @@
-	NEXT UP TO DO - SHOP:
-	
-	-Shop area class same as blackjack 
-	-Think about moving Q to ineract into those classes? eg if player in area if input == q 
-	-Shop menu class
+NEXT UP TO DO - SHOP:
+	- Get shop_item cards appearing on screen
+	- Make changes to Item class -> change to dictionary and add global enum for type of item
+	- When an item is selected in the shop, make its description appear on the right side. Would be a container, something like item_info which is made visible when something is selected.
+	- When an item is selected in the shop, make the buy button appear.
+	- Buy button functionality, take money from player, give player item, -1 from the stock
+	- Have a "SOLD OUT" banner appear over item if player buys all stock
+	- Maybe add sold out as an attribute to shop item? may not be neccesary 
+	- Player inventory -> make a class for inventories which is reusable accross NPCs. grid system should be easy enough
+ 	- Sell menu pulls sellable items from inventory. Gives player money and adds to shop stock. -> maybe add fields to item, ["sellable"] and ["stockable"] ?
 	
 
 Feature wishlist:
 	-Lawmen that respond to you shooting innocents or them 
-	-Money 
 	-General store: Sells food for healing, guns, ammunition
-	-Blackjack table in the saloon
 	-Bounty posters: Interacting spawns an outlaw in the town you can hunt for money
 	-Character customisation: jackets, hats, gun, shoes
 	-Towns:
@@ -19,7 +22,6 @@ Feature wishlist:
 		-Tombstone?
 		-Juarez?
 	
-
 Think about:
 	-Character rescale to 16x32?
 	-Completion for each town:
@@ -29,5 +31,5 @@ Think about:
 		-Buy the special item from that town
 		-Kill all the lawmen in the town
 		Potential idea:
-			-Make the towns roguelike so they reset upon each visit
+			-Make the towns roguelike so they reset upon each visit -> definitely want to do this, run based gameplay
 			-Complete all star quests in one run to earn the black star
