@@ -1,11 +1,10 @@
 NEXT UP TO DO - SHOP:
 	
-	- Make it so it changes when item is hovered over, just change opacity. 
-	- When an item is selected in the shop, make its description appear on the right side. Would be a container, something like item_info which is made visible when something is selected.
-	- When an item is selected in the shop, make the buy button appear.
-	- Buy button functionality, take money from player, give player item, -1 from the stock
+	
+	- Show item stock and make sure it decrements whem buying
 	- Have a "SOLD OUT" banner appear over item if player buys all stock
 	- Maybe add sold out as an attribute to shop item? may not be neccesary 
+	
 	- Player inventory -> make a class for inventories which is reusable accross NPCs. grid system should be easy enough
  	- Sell menu pulls sellable items from inventory. Gives player money and adds to shop stock. -> maybe add fields to item, ["sellable"] and ["stockable"] ?
 	

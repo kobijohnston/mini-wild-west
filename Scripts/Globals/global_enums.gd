@@ -1,3 +1,3 @@
 extends Node
 
-enum Item_Type { BASE, HEALTH, STAMINA }
+enum Item_Type { BASE, HEALTH, STAMINA, AMMO }

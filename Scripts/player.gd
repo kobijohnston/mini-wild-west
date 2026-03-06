@@ -37,7 +37,7 @@ func _ready():
 	GlobalSignal.reload_finished.connect(_on_reload_finished)
 	GlobalSignal.change_money.connect(_on_change_money)
 	GlobalSignal.near_shop_desk.connect(_on_near_shop_desk)
-	
+	GlobalSignal.change_ammo.connect(_on_change_ammo)
 func _physics_process(delta):
 
 	match current_state:
@@ -68,7 +68,7 @@ func _physics_process(delta):
 				var shop_scene = preload("res://Scenes/Menus/shop_menu.tscn")
 				var shop_menu = shop_scene.instantiate()
 				add_child(shop_menu)
-				#shop_menu.configure() --> pass through which shop and money and other things, inventory
+				shop_menu.configure(stats)  
 				change_state(Player_State.PAUSED)
 
 func movement():
@@ -176,6 +176,10 @@ func _on_unpause():
 
 func _on_reload_finished(ammo):
 	stats["ammo"] -= ammo
+	GlobalSignal.player_ammo_changed.emit(stats["ammo"])
+
+func _on_change_ammo(ammo):
+	stats["ammo"] += ammo
 	GlobalSignal.player_ammo_changed.emit(stats["ammo"])
 	
 func _on_change_money(change_by):

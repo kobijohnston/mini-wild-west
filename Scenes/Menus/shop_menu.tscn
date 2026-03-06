@@ -44,6 +44,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="Back from Buy" type="Button" parent="Buy Menu"]
 layout_mode = 0
@@ -65,6 +66,27 @@ offset_bottom = 832.0
 layout_mode = 2
 theme_override_constants/separation = 130
 
+[node name="Buy Item" type="Control" parent="Buy Menu"]
+visible = false
+anchors_preset = 0
+offset_left = 1344.0
+offset_top = 256.0
+offset_right = 1600.0
+offset_bottom = 832.0
+
+[node name="Item Description" type="RichTextLabel" parent="Buy Menu/Buy Item"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 384.0
+
+[node name="Buy Button" type="Button" parent="Buy Menu/Buy Item"]
+layout_mode = 0
+offset_top = 448.0
+offset_right = 256.0
+offset_bottom = 576.0
+theme_override_font_sizes/font_size = 48
+text = "Buy"
+
 [node name="Sell Menu" type="Control" parent="."]
 visible = false
 layout_mode = 3
@@ -84,4 +106,5 @@ text = "Back"
 [connection signal="pressed" from="Buy Or Sell/Enter Buy" to="." method="_on_enter_buy_pressed"]
 [connection signal="pressed" from="Buy Or Sell/Enter Sell" to="." method="_on_enter_sell_pressed"]
 [connection signal="pressed" from="Buy Menu/Back from Buy" to="." method="_on_back_from_buy_pressed"]
+[connection signal="pressed" from="Buy Menu/Buy Item/Buy Button" to="." method="_on_buy_button_pressed"]
 [connection signal="pressed" from="Sell Menu/Back from Sell" to="." method="_on_back_from_sell_pressed"]

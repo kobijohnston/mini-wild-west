@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dx60g01vbdehx"]
+[gd_scene load_steps=3 format=3 uid="uid://dx60g01vbdehx"]
 
 [ext_resource type="Script" uid="uid://cblnj001yd638" path="res://Scripts/Shops/shop_item.gd" id="1_mgqxb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mgqxb"]
+size = Vector2(768, 128)
 
 [node name="Shop Item" type="Control"]
 layout_mode = 3
@@ -9,12 +12,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_mgqxb")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
 offset_right = 768.0
 offset_bottom = 128.0
+mouse_filter = 2
 color = Color(1, 1, 1, 0.79607844)
 
 [node name="Item Name" type="Label" parent="."]
@@ -36,3 +41,13 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 48
 text = "$00.00"
 vertical_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(384, 64)
+shape = SubResource("RectangleShape2D_mgqxb")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
