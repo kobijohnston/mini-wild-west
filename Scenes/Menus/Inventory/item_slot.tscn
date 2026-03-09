@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://13g2jlnoynwb"]
+
+[ext_resource type="Script" uid="uid://d2yacjibxmtuh" path="res://item_slot.gd" id="1_opfgo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kxu0q"]
+size = Vector2(64, 64)
+
+[node name="Item Slot" type="Area2D"]
+script = ExtResource("1_opfgo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_kxu0q")
+
+[node name="Marker2D" type="Marker2D" parent="."]
