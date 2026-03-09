@@ -33,12 +33,11 @@ func _on_reload(weapon, ammo):
 			GlobalSignal.reload_finished.emit(ammo)
 
 func _on_player_money_changed(money):
-	money_label.text = "$" + str(money)
+	money_label.text = GlobalFuncs.format_as_money(money)
 
 func _on_player_sprinting(is_sprinting, stamina):
 	# When this changes to a bar, use is_sprinting to have a different animation style for draining and recharging
 	stamina_label.text = "STAM: " + str(stamina)
-	
 	
 func _on_show_tooltip(tooltip):
 	match tooltip:

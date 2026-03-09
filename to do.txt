@@ -1,10 +1,5 @@
 NEXT UP TO DO - SHOP:
 	
-	
-	- Show item stock and make sure it decrements whem buying
-	- Have a "SOLD OUT" banner appear over item if player buys all stock
-	- Maybe add sold out as an attribute to shop item? may not be neccesary 
-	
 	- Player inventory -> make a class for inventories which is reusable accross NPCs. grid system should be easy enough
  	- Sell menu pulls sellable items from inventory. Gives player money and adds to shop stock. -> maybe add fields to item, ["sellable"] and ["stockable"] ?
 	

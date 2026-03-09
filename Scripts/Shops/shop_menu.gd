@@ -23,7 +23,7 @@ func _ready() -> void:
 	GlobalSignal.item_selected.connect(_on_item_selected)
 	var ammo_item = Item.new().create("Revolver Ammo", "Bullets for your revolver.", 0.05, GlobalEnums.Item_Type.AMMO, 1, false, false, false)
 	var whiskey = Item.new().create("Bush Whiskey", "Imported from Co. Antrim.\n\nPrevents your stamina bar from depleting for 20 seconds.", 1, GlobalEnums.Item_Type.STAMINA, 300, false, false, false)
-	shop_stock.append([ammo_item, 100, 1])
+	shop_stock.append([ammo_item, 10, 1])
 	shop_stock.append([whiskey, 5, 2])
 	
 func _process(delta: float) -> void:
@@ -78,11 +78,12 @@ func _on_item_selected(shop_item):
 	selected_item = shop_item
 
 func _on_buy_button_pressed() -> void:
-	if player["money"] >= selected_item.item["price"]:
+	if player["money"] >= selected_item.item["price"] and selected_item.shop_item["quantity"] > 0:
 		selected_item.update_quantity(-1)
 		GlobalSignal.change_money.emit(-selected_item.item["price"])
 		if selected_item.item["type"] == GlobalEnums.Item_Type.AMMO:
 			GlobalSignal.change_ammo.emit(selected_item.item["modifier"])
+			
 func _on_back_from_sell_pressed() -> void:
 	change_state(Shop_State.START)
 	sell_menu.visible = false
@@ -90,3 +91,6 @@ func _on_back_from_sell_pressed() -> void:
 func _on_enter_sell_pressed() -> void:
 	change_state(Shop_State.SELL)
 	buy_or_sell.visible = false
+
+func _on_quit_pressed() -> void:
+	queue_free()

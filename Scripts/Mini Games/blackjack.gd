@@ -200,26 +200,42 @@ func result():
 	var dealer_hand_value = calculate_hand_value(dealer["hand"])
 	
 	if player["five card charlie"]: #-------------------------------------------------------------WIN
-		result_label.text = "Five Card Charlie!\nYou win! Winnings: " + str(player["bet"] * 2)
-		adjust_player_money(player["bet"] * 2)
+		win()
 	else:
 		if player_hand_value == dealer_hand_value: #----------------------------------------------DRAW
-			result_label.text = "Draw!"
-			adjust_player_money(player["bet"])
+			draw()
 		elif player_hand_value > dealer_hand_value:  #--------------------------------------------NORMAL WIN (2:1)
-			result_label.text = "You Win!\nWinnings: " + str(player["bet"] * 2)
-			adjust_player_money(player["bet"] * 2)
+			win()
 		elif dealer_hand_value > player_hand_value:  #--------------------------------------------LOSS
-			result_label.text = "You Lose!"
+			lose()
 		elif player["natural blackjack"] or dealer["natural blackjack"]:
+			
 			if dealer["natural blackjack"] and player["natural blackjack"]:  #--------------------DRAW
-				result_label.text = "Draw!"
-				adjust_player_money(player["bet"])
+				draw()
 			elif dealer["natural blackjack"] and not player["natural blackjack"]: #---------------LOSS
-				result_label.text = "You Lose!"
+				lose()
 			elif player["natural blackjack"] and not dealer["natural blackjack"]: #---------------NATURAL WIN (3:2)
-				result_label.text = "Natural Blackjack!\nWinnings: " + str(player["bet"] * 1.5)
-				adjust_player_money(player["bet"] * 1.5)
+				win()
+
+func win():
+	if player["five card charlie"]:
+		result_label.text = "Five Card Charlie!\nYou win! Winnings: " + GlobalFuncs.format_as_money(player["bet"] * 2)
+		adjust_player_money(player["bet"] * 2)
+		
+	elif player["natural blackjack"]:
+		result_label.text = "Natural Blackjack!\nWinnings: " + GlobalFuncs.format_as_money(player["bet"] * 1.5)
+		adjust_player_money(player["bet"] * 1.5)
+		
+	else:
+		result_label.text = "You Win!\nWinnings: " + GlobalFuncs.format_as_money(player["bet"] * 2)
+		adjust_player_money(player["bet"] * 2)
+
+func lose():
+	result_label.text = "You Lose!"
+
+func draw():
+	result_label.text = "Draw!"
+	adjust_player_money(player["bet"])
 
 func adjust_player_money(winnings):
 	GlobalSignal.change_money.emit(winnings)

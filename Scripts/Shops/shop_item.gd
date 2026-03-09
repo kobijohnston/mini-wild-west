@@ -1,5 +1,7 @@
 extends Control
 
+# Requires GlobalFuncs.format_as_money(money) @ line 35
+
 var shop_item = {
 	"name": "",
 	"price": 0,
@@ -14,6 +16,8 @@ var hovering = false
 @onready var item_name: Label = $"Item Name"
 @onready var price: Label = $Price
 @onready var background: ColorRect = $ColorRect
+@onready var stock_label: Label = $"Stock Label"
+@onready var sold_out_banner: Control = $"Sold Out Banner"
 
 
 func config(i, quantity):
@@ -23,17 +27,20 @@ func config(i, quantity):
 	shop_item["price"] = item["price"]
 	shop_item["quantity"] = quantity
 	shop_item["description"] = item["description"]
-	print("Adding:", item["name"])
 
 	draw_item()
 	
 func draw_item():
 	item_name.text = shop_item["name"]
-	price.text = "$" + str(shop_item["price"])
-
+	price.text = GlobalFuncs.format_as_money(shop_item["price"])
+	stock_label.text = str(shop_item["quantity"])
+	if shop_item["quantity"] == 0:
+		sold_out_banner.visible = true
+	
 func update_quantity(quantity):
 	shop_item["quantity"] += quantity
-
+	draw_item()
+	
 func _on_area_2d_mouse_entered() -> void:
 	hovering = true
 	background.color.a = 0.5

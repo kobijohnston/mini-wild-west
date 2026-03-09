@@ -35,12 +35,47 @@ vertical_alignment = 1
 [node name="Price" type="Label" parent="."]
 layout_mode = 0
 offset_left = 576.0
-offset_right = 726.0
-offset_bottom = 128.0
+offset_right = 768.0
+offset_bottom = 67.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 48
 text = "$00.00"
 vertical_alignment = 1
+
+[node name="Stock Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 472.0
+offset_top = 62.0
+offset_right = 728.0
+offset_bottom = 126.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 46
+text = "5"
+horizontal_alignment = 2
+
+[node name="Sold Out Banner" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 768.0
+offset_bottom = 128.0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="Sold Out Banner"]
+layout_mode = 0
+offset_right = 768.0
+offset_bottom = 128.0
+color = Color(0, 0, 0, 0.5921569)
+
+[node name="Sold Out Label" type="Label" parent="Sold Out Banner"]
+layout_mode = 0
+offset_top = 64.00001
+offset_right = 768.0
+offset_bottom = 196.0
+rotation = -0.17453292
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 96
+text = "SOLD OUT"
+horizontal_alignment = 1
 
 [node name="Area2D" type="Area2D" parent="."]
 

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GlobalSignal="*res://Scripts/Globals/global_signal.gd"
 GlobalEnums="*res://Scripts/Globals/global_enums.gd"
+GlobalFuncs="*res://Scripts/Globals/global_funcs.gd"
 
 [debug]
 
