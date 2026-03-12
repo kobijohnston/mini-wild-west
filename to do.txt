@@ -5,7 +5,7 @@ NEXT UP TO DO - SHOP:
 		- Inventory class instantiates instances of ItemSlot set to BASE item (accepts all), and assigns item enum to equipment slots as needed in a setup method
 		- Inventory class also has config method where player's inventory items from stats dict are added
 		- ItemSlot class is an Area2D which detects when an item is dropped in to it, allowing it to snap to a Marker2D 
-		- InventoryItem class has an image2D and item name and type passed from the Item assigned to it. Can be clicked, dragged, and dropped into other slots. It will need a current slot and last slot attribute
+		- InventoryItem class has a sprite2D and item name and type passed from the Item assigned to it. Can be clicked, dragged, and dropped into other slots. It will need a current slot and last slot attribute
 		- Player current weapon draws from inventory weapon slots -> make right click switch to secondary OR just fire secondary?
  	- Sell menu pulls sellable items from inventory. Gives player money and adds to shop stock. -> maybe add fields to item, ["sellable"] and ["stockable"] ?
 	

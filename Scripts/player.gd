@@ -9,6 +9,9 @@ var last_tooltip = current_tooltip
 var aiming_setup = false
 var paused = false
 
+var inventory_scene = preload("res://Scenes/Menus/Inventory/inventory.tscn")
+var inventory = inventory_scene.instantiate()
+var inventory_setup = false
 var stats = {
 	"health": 100,
 	"money": 10,
@@ -38,6 +41,7 @@ func _ready():
 	GlobalSignal.change_money.connect(_on_change_money)
 	GlobalSignal.near_shop_desk.connect(_on_near_shop_desk)
 	GlobalSignal.change_ammo.connect(_on_change_ammo)
+	GlobalSignal.give_item.connect(_on_give_item)
 func _physics_process(delta):
 
 	match current_state:
@@ -102,6 +106,17 @@ func movement():
 				sprint_timer = STAMINA
 			GlobalSignal.is_player_sprinting.emit(sprinting, sprint_timer)
 			
+	if Input.is_action_just_pressed("inventory"):
+		if inventory_setup:
+			inventory.visible = true
+		else:
+			inventory.configure(stats["inventory"])
+			add_child(inventory)
+			inventory.visible = true
+			change_state(Player_State.PAUSED)
+			inventory_setup = true
+		
+		
 	if current_state == Player_State.FREE and Input.is_action_just_pressed("shoot"):
 		change_state(Player_State.AIMING)
 	move_and_slide()
@@ -144,7 +159,6 @@ func pause():
 	last_state = current_state
 	if not paused:
 		current_state = Player_State.PAUSED
-		
 	
 func change_state(state):
 	if state == Player_State.PAUSED:
@@ -189,5 +203,8 @@ func _on_change_money(change_by):
 func round_money(money) -> float:
 	var rounded_money = snapped(money, 0.01)
 	return rounded_money
-	
+
+func _on_give_item(item):
+	stats["inventory"].append(item)
+	inventory.configure(stats["inventory"])
 	

@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpyrrnwpfgikw"]
+[gd_scene load_steps=2 format=3 uid="uid://bpyrrnwpfgikw"]
 
-[ext_resource type="Script" uid="uid://ba60wfs5xgp21" path="res://Scripts/inventory_item.gd" id="1_3md6g"]
+[ext_resource type="Script" uid="uid://ba60wfs5xgp21" path="res://Scripts/Inventory/inventory_item.gd" id="1_3md6g"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w5tco"]
-
-[node name="Inventory Item" type="Sprite2D"]
+[node name="Inventory Item" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_3md6g")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_w5tco")
+[node name="Item Sprite" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0

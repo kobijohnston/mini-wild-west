@@ -13,3 +13,8 @@ position = Vector2(32, 32)
 shape = SubResource("RectangleShape2D_kxu0q")
 
 [node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_right = 64.0
+offset_bottom = 64.0
+text = "SLOT"

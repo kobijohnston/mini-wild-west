@@ -9,7 +9,7 @@ var item = {
 	"modifier": 0,
 	"sellable": false,
 	"restockable": false,
-	"sprite": false
+	"sprite": "res://Assets/Sprites/Items/"
 }
 
 func create(name: String, desc: String, price: float, type: GlobalEnums.Item_Type, mod: int, sellable: bool, restockable: bool, image) -> Dictionary:
@@ -20,5 +20,5 @@ func create(name: String, desc: String, price: float, type: GlobalEnums.Item_Typ
 	item["modifier"] = mod
 	item["sellable"] = sellable
 	item["restockable"] = restockable
-	item["sprite"] = image
+	item["sprite"] += image
 	return item

@@ -1,9 +1,26 @@
-[gd_scene format=3 uid="uid://boexhx60tdyvr"]
+[gd_scene load_steps=3 format=3 uid="uid://boexhx60tdyvr"]
 
-[node name="Inventory" type="Control"]
+[ext_resource type="Script" uid="uid://ccud4ie8gyhkn" path="res://Scripts/Inventory/inventory.gd" id="1_8d0o5"]
+[ext_resource type="Texture2D" uid="uid://c7lcp2mpfm4a4" path="res://Assets/Sprites/UI/inventory.png" id="2_1d3cr"]
+
+[node name="Inventory" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_8d0o5")
+
+[node name="Shadow" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1088.0
+color = Color(0, 0, 0, 0.54509807)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 256)
+texture = ExtResource("2_1d3cr")
+centered = false
+
+[node name="Item Slots" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
