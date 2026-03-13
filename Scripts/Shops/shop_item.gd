@@ -44,12 +44,12 @@ func update_quantity(quantity):
 func _on_area_2d_mouse_entered() -> void:
 	hovering = true
 	background.color.a = 0.5
-	print("Mouse entered")
+
 	
 func _on_area_2d_mouse_exited() -> void:
 	hovering = false
 	background.color.a = 1
-	print("mouse exited")
+
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if hovering:

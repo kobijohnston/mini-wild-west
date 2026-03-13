@@ -13,6 +13,8 @@ var item_slots = []
 var item_slot_scene = preload("res://Scenes/Menus/Inventory/item_slot.tscn")
 var inventory_item_scene = preload("res://Scenes/Menus/Inventory/inventory_item.tscn")
 
+var configured = false
+
 func _process(delta):
 	
 	if Input.is_action_just_pressed("select"):
@@ -32,19 +34,38 @@ func configure(items): # Creates item slots and fills them with items from playe
 			slot.position.x = slot_x
 			slot.position.y = slot_y
 			slot_x += 96
-			print("Slot created")
-			if items.size() > 0:
-				print("adding item")
-				var inventory_item = inventory_item_scene.instantiate()
-				add_child(inventory_item)
-				inventory_item.set_sprite(items[0]["sprite"])
-				inventory_item.position = slot.position
-				items.remove_at(0)
-				print("item added")
 			item_row.append(slot)
 		
 		item_slots.append(item_row)
 		slot_y += 96
-	
+		
 	slot_y = FIRST_SLOT_Y
-	print("DONE DONE DONE DONE DONE")
+	
+	configured = true
+	
+	populate_inventory(items)
+	
+func populate_inventory(items):
+	
+	if not configured:
+		print("ERROR: Inventory not configured")
+		return
+		
+	var current_slot_row = 0
+	var current_slot_column = 0
+	
+	for item in items:
+		if items.size() > 0:
+
+			var inventory_item = inventory_item_scene.instantiate()
+			add_child(inventory_item)
+			inventory_item.set_sprite(items[0]["sprite"])
+			inventory_item.position = item_slots[current_slot_row][current_slot_column].position
+			items.remove_at(0)
+			
+			if current_slot_column < 2:
+				current_slot_column += 1
+			else:
+				current_slot_row += 1
+				current_slot_column = 0
+			print("ITEM ADDED: " + item["name"])

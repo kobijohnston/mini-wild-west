@@ -11,7 +11,7 @@ var paused = false
 
 var inventory_scene = preload("res://Scenes/Menus/Inventory/inventory.tscn")
 var inventory = inventory_scene.instantiate()
-var inventory_setup = false
+
 var stats = {
 	"health": 100,
 	"money": 10,
@@ -35,6 +35,7 @@ var revolver_scene = preload("res://Scenes/Weapons/revolver.tscn")
 @onready var current_weapon = revolver
 
 func _ready():
+	
 	GlobalSignal.near_blackjack.connect(_on_near_blackjack)
 	GlobalSignal.unpause.connect(_on_unpause)
 	GlobalSignal.reload_finished.connect(_on_reload_finished)
@@ -42,6 +43,7 @@ func _ready():
 	GlobalSignal.near_shop_desk.connect(_on_near_shop_desk)
 	GlobalSignal.change_ammo.connect(_on_change_ammo)
 	GlobalSignal.give_item.connect(_on_give_item)
+	
 func _physics_process(delta):
 
 	match current_state:
@@ -107,14 +109,14 @@ func movement():
 			GlobalSignal.is_player_sprinting.emit(sprinting, sprint_timer)
 			
 	if Input.is_action_just_pressed("inventory"):
-		if inventory_setup:
+		if inventory.configured:
 			inventory.visible = true
+			change_state(Player_State.PAUSED)
 		else:
 			inventory.configure(stats["inventory"])
 			add_child(inventory)
 			inventory.visible = true
 			change_state(Player_State.PAUSED)
-			inventory_setup = true
 		
 		
 	if current_state == Player_State.FREE and Input.is_action_just_pressed("shoot"):
@@ -205,6 +207,16 @@ func round_money(money) -> float:
 	return rounded_money
 
 func _on_give_item(item):
+	
 	stats["inventory"].append(item)
-	inventory.configure(stats["inventory"])
+	print("------------------------")
+	for i in stats["inventory"]:
+		print("Item in inventory: " + i["name"])
+	if not inventory.configured:
+		
+		add_child(inventory)
+		inventory.configure(stats["inventory"])
+		return
+	
+	inventory.populate_inventory(stats["inventory"])
 	

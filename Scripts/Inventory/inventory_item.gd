@@ -9,5 +9,5 @@ var dragging = false
 
 
 func set_sprite(sprite_filepath):
-	
+
 	item_sprite.texture = load(sprite_filepath)

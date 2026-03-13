@@ -22,3 +22,16 @@ func create(name: String, desc: String, price: float, type: GlobalEnums.Item_Typ
 	item["restockable"] = restockable
 	item["sprite"] += image
 	return item
+
+func copy() -> Dictionary:
+	var new_item = {
+		"name": item["name"],
+		"description": item["description"],
+		"price": item["price"],
+		"type": item["type"],
+		"modifier": item["modifier"],
+		"sellable": item["sellable"],
+		"restockable": item["restockable"],
+		"sprite": item["sprite"]
+	}
+	return new_item

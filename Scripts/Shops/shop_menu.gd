@@ -78,13 +78,14 @@ func _on_item_selected(shop_item):
 	selected_item = shop_item
 
 func _on_buy_button_pressed() -> void:
+	
 	if player["money"] >= selected_item.item["price"] and selected_item.shop_item["quantity"] > 0:
 		selected_item.update_quantity(-1)
 		GlobalSignal.change_money.emit(-selected_item.item["price"])
 		if selected_item.item["type"] == GlobalEnums.Item_Type.AMMO:
 			GlobalSignal.change_ammo.emit(selected_item.item["modifier"])
 		else:
-			GlobalSignal.give_item.emit(selected_item.item)
+			GlobalSignal.give_item.emit(selected_item.copy())
 			
 func _on_back_from_sell_pressed() -> void:
 	change_state(Shop_State.START)
@@ -95,4 +96,5 @@ func _on_enter_sell_pressed() -> void:
 	buy_or_sell.visible = false
 
 func _on_quit_pressed() -> void:
+	GlobalSignal.unpause.emit()
 	queue_free()
