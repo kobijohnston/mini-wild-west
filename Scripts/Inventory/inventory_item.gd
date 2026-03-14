@@ -9,5 +9,7 @@ var dragging = false
 
 
 func set_sprite(sprite_filepath):
-
+	if sprite_filepath == "false":
+		item_sprite.texture = load("res://icon.svg")
+		return
 	item_sprite.texture = load(sprite_filepath)

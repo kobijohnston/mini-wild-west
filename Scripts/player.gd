@@ -208,8 +208,12 @@ func round_money(money) -> float:
 
 func _on_give_item(item):
 	
+	for i in stats["inventory"]:
+		print("Item in inventory: " + i["name"])
+		
 	stats["inventory"].append(item)
 	print("------------------------")
+	
 	for i in stats["inventory"]:
 		print("Item in inventory: " + i["name"])
 	if not inventory.configured:

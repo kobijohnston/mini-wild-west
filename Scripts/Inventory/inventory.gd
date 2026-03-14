@@ -54,18 +54,19 @@ func populate_inventory(items):
 	var current_slot_row = 0
 	var current_slot_column = 0
 	
+	var item_index = 0
 	for item in items:
 		if items.size() > 0:
-
+			
 			var inventory_item = inventory_item_scene.instantiate()
 			add_child(inventory_item)
-			inventory_item.set_sprite(items[0]["sprite"])
+			inventory_item.set_sprite(items[item_index]["sprite"])
 			inventory_item.position = item_slots[current_slot_row][current_slot_column].position
-			items.remove_at(0)
 			
 			if current_slot_column < 2:
 				current_slot_column += 1
 			else:
 				current_slot_row += 1
 				current_slot_column = 0
+			item_index += 1
 			print("ITEM ADDED: " + item["name"])

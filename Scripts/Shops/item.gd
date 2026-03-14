@@ -23,15 +23,15 @@ func create(name: String, desc: String, price: float, type: GlobalEnums.Item_Typ
 	item["sprite"] += image
 	return item
 
-func copy() -> Dictionary:
+func copy(i) -> Dictionary:
 	var new_item = {
-		"name": item["name"],
-		"description": item["description"],
-		"price": item["price"],
-		"type": item["type"],
-		"modifier": item["modifier"],
-		"sellable": item["sellable"],
-		"restockable": item["restockable"],
-		"sprite": item["sprite"]
+		"name": i["name"],
+		"description": i["description"],
+		"price": i["price"],
+		"type": i["type"],
+		"modifier": i["modifier"],
+		"sellable": i["sellable"],
+		"restockable": i["restockable"],
+		"sprite": i["sprite"]
 	}
 	return new_item

@@ -21,10 +21,14 @@ func _ready() -> void:
 	# EXAMPLES
 	
 	GlobalSignal.item_selected.connect(_on_item_selected)
+	
 	var ammo_item = Item.new().create("Revolver Ammo", "Bullets for your revolver.", 0.05, GlobalEnums.Item_Type.AMMO, 1, false, false, "false")
 	var whiskey = Item.new().create("Bush Whiskey", "Imported from Co. Antrim.\n\nPrevents your stamina bar from depleting for 20 seconds.", 1, GlobalEnums.Item_Type.STAMINA, 300, false, false, "whiskey.png")
+	var shotgun = Item.new().create("Pump-Action Shotgun", "Wipe out hordes of enemies with this crowd-controlling menace.", 5, GlobalEnums.Item_Type.BASE, 1, true, true, "false")
+	
 	shop_stock.append([ammo_item, 10, 1])
 	shop_stock.append([whiskey, 5, 2])
+	shop_stock.append([shotgun, 1, 3])
 	
 func _process(delta: float) -> void:
 	
@@ -85,7 +89,8 @@ func _on_buy_button_pressed() -> void:
 		if selected_item.item["type"] == GlobalEnums.Item_Type.AMMO:
 			GlobalSignal.change_ammo.emit(selected_item.item["modifier"])
 		else:
-			GlobalSignal.give_item.emit(selected_item.copy())
+			var i = Item.new()
+			GlobalSignal.give_item.emit(i.copy(selected_item.item))
 			
 func _on_back_from_sell_pressed() -> void:
 	change_state(Shop_State.START)
