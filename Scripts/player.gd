@@ -56,28 +56,18 @@ func _physics_process(delta):
 			pass
 	
 	match current_tooltip:
+		
 		Tooltips.FREE:
 			GlobalSignal.show_tooltip.emit("Free")
 		Tooltips.AIMING:
 			GlobalSignal.show_tooltip.emit("Aiming")
 		Tooltips.PLAY_BLACKJACK:
 			GlobalSignal.show_tooltip.emit("Play Blackjack")
-			if Input.is_action_just_pressed("select"):
-				var blackjack_scene = preload("res://Scenes/Mini Games/blackjack.tscn")
-				var blackjack_game = blackjack_scene.instantiate()
-				get_tree().current_scene.add_child(blackjack_game)
-				blackjack_game.set_money(stats["money"])
-				change_state(Player_State.PAUSED)
 		Tooltips.NEAR_SHOP:
 			GlobalSignal.show_tooltip.emit("Enter Shop")
-			if Input.is_action_just_pressed("select"):
-				var shop_scene = preload("res://Scenes/Menus/shop_menu.tscn")
-				var shop_menu = shop_scene.instantiate()
-				add_child(shop_menu)
-				shop_menu.configure(stats)  
-				change_state(Player_State.PAUSED)
 
 func movement():
+	
 	character_direction.x = Input.get_axis("left", "right")
 	character_direction.y = Input.get_axis("up", "down")
 	character_direction = character_direction.normalized()
@@ -107,23 +97,16 @@ func movement():
 			else:
 				sprint_timer = STAMINA
 			GlobalSignal.is_player_sprinting.emit(sprinting, sprint_timer)
-			
-	if Input.is_action_just_pressed("inventory"):
-		if inventory.configured:
-			inventory.visible = true
-			change_state(Player_State.PAUSED)
-		else:
-			inventory.configure(stats["inventory"])
-			add_child(inventory)
-			inventory.visible = true
-			change_state(Player_State.PAUSED)
-		
-		
+	
+	if Input.is_action_pressed("interact"):
+		interact()
+
 	if current_state == Player_State.FREE and Input.is_action_just_pressed("shoot"):
 		change_state(Player_State.AIMING)
 	move_and_slide()
 
 func aiming():
+	
 	if not aiming_setup:
 		var weapon_added = false
 		for child in get_children(): # checks to see if weapon is a child of the player yet, this can prob be done away with when weapon switching is a thing
@@ -138,8 +121,10 @@ func aiming():
 	var aim_direction = (get_global_mouse_position() - global_position).normalized()
 	current_weapon.global_position = marker_2d.global_position
 	current_weapon.rotation = aim_direction.angle()
+	
 	var crosshair = crosshair_scene.instantiate()
 	crosshair.global_position = get_global_mouse_position()
+	
 	if Input.is_action_just_pressed("space"):
 		change_state(Player_State.FREE)
 		current_weapon.visible = false
@@ -161,6 +146,37 @@ func pause():
 	last_state = current_state
 	if not paused:
 		current_state = Player_State.PAUSED
+	
+func interact():
+	
+	match current_tooltip:
+		Tooltips.PLAY_BLACKJACK:
+			
+			var blackjack_scene = preload("res://Scenes/Mini Games/blackjack.tscn")
+			var blackjack_game = blackjack_scene.instantiate()
+			add_child(blackjack_game)
+			blackjack_game.set_money(stats["money"])
+			change_state(Player_State.PAUSED)
+			
+		Tooltips.NEAR_SHOP:
+			
+			var shop_scene = preload("res://Scenes/Menus/shop_menu.tscn")
+			var shop_menu = shop_scene.instantiate()
+			add_child(shop_menu)
+			shop_menu.configure(stats)  
+			change_state(Player_State.PAUSED)
+			
+		_: # Tooltips: FREE, AIMING
+			
+			if inventory.configured:
+				inventory.visible = true
+				change_state(Player_State.PAUSED)
+			else:
+				inventory.configure(stats["inventory"])
+				add_child(inventory)
+				inventory.visible = true
+				change_state(Player_State.PAUSED)
+
 	
 func change_state(state):
 	if state == Player_State.PAUSED:

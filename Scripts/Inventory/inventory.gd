@@ -17,7 +17,7 @@ var configured = false
 
 func _process(delta):
 	
-	if Input.is_action_just_pressed("select"):
+	if visible and Input.is_action_just_pressed("quit"):
 		visible = false
 		GlobalSignal.unpause.emit()
 		

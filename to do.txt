@@ -15,15 +15,13 @@ NEXT UP TO DO - SHOP:
 
 Feature wishlist:
 	-Lawmen that respond to you shooting innocents or them 
-	-General store: Sells food for healing, guns, ammunition
 	-Bounty posters: Interacting spawns an outlaw in the town you can hunt for money
 	-Character customisation: jackets, hats, gun, shoes
 	-Towns:
 		-Amarillo
 		-Agua Fria
-		-El Paso
+		-El Paso / Juarez
 		-Tombstone?
-		-Juarez?
 	
 Think about:
 	-Character rescale to 16x32?
