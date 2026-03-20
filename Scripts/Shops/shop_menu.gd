@@ -123,9 +123,15 @@ func _on_buy_button_pressed() -> void:
 func _on_sell_button_pressed() -> void:
 	
 	if selected_item.shop_item["quantity"] > 0:
+		
 		selected_item.update_quantity(-1)
 		GlobalSignal.change_money.emit(selected_item.shop_item["price"])
 		GlobalSignal.take_item.emit(selected_item.item)
+		
+		if selected_item.item["restockable"]: # FIX 
+			var i = Item.new()
+			var restock_item = i.copy(selected_item.item)
+			shop_stock.append([restock_item, 1, 10])
 		
 func _on_back_from_sell_pressed() -> void:
 	change_state(Shop_State.START)

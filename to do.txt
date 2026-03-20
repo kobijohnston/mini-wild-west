@@ -10,7 +10,7 @@ NEXT UP TO DO - SHOP / INVENTORY:
 		- Player current weapon draws from inventory weapon slots -> make right click switch to secondary
 
 	SHOP:
- 		- Sell menu pulls sellable items from inventory. Gives player money and adds to shop stock. 
+ 		- Sell menu adds to shop stock. 
 
 Feature wishlist:
 	-Lawmen that respond to you shooting innocents or them 
