@@ -34,6 +34,7 @@ window/stretch/mode="viewport"
 [global_group]
 
 Player="This is the player."
+Item=""
 
 [input]
 

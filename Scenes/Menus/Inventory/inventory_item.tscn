@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ba60wfs5xgp21" path="res://Scripts/Inventory/inventory_item.gd" id="1_3md6g"]
 
-[node name="Inventory Item" type="Control"]
+[node name="Inventory Item" type="Control" groups=["Item"]]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_3md6g")

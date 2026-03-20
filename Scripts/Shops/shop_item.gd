@@ -13,6 +13,7 @@ var item
 
 var hovering = false
 
+var SELL_MODIFIER = 0.4
 @onready var item_name: Label = $"Item Name"
 @onready var price: Label = $Price
 @onready var background: ColorRect = $ColorRect
@@ -29,8 +30,19 @@ func config(i, quantity):
 	shop_item["description"] = item["description"]
 
 	draw_item()
+
+func config_sell(i):
+	
+	item = i
+	shop_item["name"] = item["name"]
+	shop_item["price"] = item["price"] * SELL_MODIFIER
+	shop_item["quantity"] = 1
+	shop_item["description"] = item["description"]
+	
+	draw_item()
 	
 func draw_item():
+	
 	item_name.text = shop_item["name"]
 	price.text = GlobalFuncs.format_as_money(shop_item["price"])
 	stock_label.text = str(shop_item["quantity"])

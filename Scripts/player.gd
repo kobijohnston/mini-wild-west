@@ -43,6 +43,7 @@ func _ready():
 	GlobalSignal.near_shop_desk.connect(_on_near_shop_desk)
 	GlobalSignal.change_ammo.connect(_on_change_ammo)
 	GlobalSignal.give_item.connect(_on_give_item)
+	GlobalSignal.take_item.connect(_on_take_item)
 	
 func _physics_process(delta):
 
@@ -216,6 +217,7 @@ func _on_change_ammo(ammo):
 	
 func _on_change_money(change_by):
 	stats["money"] += round_money(change_by)
+	print(str(change_by))
 	GlobalSignal.player_money_changed.emit(stats["money"])
 	
 func round_money(money) -> float:
@@ -240,3 +242,15 @@ func _on_give_item(item):
 	
 	inventory.populate_inventory(stats["inventory"])
 	
+func _on_take_item(item):
+	
+	var removed = false
+	var index = 0
+	for i in stats["inventory"]:
+		if not removed:
+			if i == item:
+				stats["inventory"].remove_at(index)
+			index += 1
+			removed = true 
+	
+	inventory.populate_inventory(stats["inventory"])

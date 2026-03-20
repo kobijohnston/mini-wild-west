@@ -13,6 +13,7 @@ offset_bottom = 896.0
 color = Color(0.5662564, 0.780804, 0.70992446, 1)
 
 [node name="Buy Or Sell" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -96,11 +97,11 @@ theme_override_font_sizes/font_size = 48
 text = "Buy"
 
 [node name="Sell Menu" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="Back from Sell" type="Button" parent="Sell Menu"]
 layout_mode = 0
@@ -111,9 +112,41 @@ offset_bottom = 320.0
 theme_override_font_sizes/font_size = 32
 text = "Back"
 
+[node name="Sell Container" type="ScrollContainer" parent="Sell Menu"]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 256.0
+offset_right = 1280.0
+offset_bottom = 832.0
+
+[node name="Sell Vbox" type="VBoxContainer" parent="Sell Menu/Sell Container"]
+layout_mode = 2
+theme_override_constants/separation = 130
+
+[node name="Sell Item" type="Control" parent="Sell Menu"]
+anchors_preset = 0
+offset_left = 1344.0
+offset_top = 256.0
+offset_right = 1600.0
+offset_bottom = 832.0
+
+[node name="Sell Item Description" type="RichTextLabel" parent="Sell Menu/Sell Item"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 384.0
+
+[node name="Sell Button" type="Button" parent="Sell Menu/Sell Item"]
+layout_mode = 0
+offset_top = 448.0
+offset_right = 256.0
+offset_bottom = 576.0
+theme_override_font_sizes/font_size = 48
+text = "Sell"
+
 [connection signal="pressed" from="Buy Or Sell/Enter Buy" to="." method="_on_enter_buy_pressed"]
 [connection signal="pressed" from="Buy Or Sell/Enter Sell" to="." method="_on_enter_sell_pressed"]
 [connection signal="pressed" from="Buy Or Sell/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Buy Menu/Back from Buy" to="." method="_on_back_from_buy_pressed"]
 [connection signal="pressed" from="Buy Menu/Buy Item/Buy Button" to="." method="_on_buy_button_pressed"]
 [connection signal="pressed" from="Sell Menu/Back from Sell" to="." method="_on_back_from_sell_pressed"]
+[connection signal="pressed" from="Sell Menu/Sell Item/Sell Button" to="." method="_on_sell_button_pressed"]

@@ -14,6 +14,7 @@ var item_slot_scene = preload("res://Scenes/Menus/Inventory/item_slot.tscn")
 var inventory_item_scene = preload("res://Scenes/Menus/Inventory/inventory_item.tscn")
 
 var configured = false
+var populated = false
 
 func _process(delta):
 	
@@ -51,10 +52,14 @@ func populate_inventory(items):
 		print("ERROR: Inventory not configured")
 		return
 		
+	if populated:
+		clear_inventory()
+				
 	var current_slot_row = 0
 	var current_slot_column = 0
 	
 	var item_index = 0
+	
 	for item in items:
 		if items.size() > 0:
 			
@@ -70,3 +75,10 @@ func populate_inventory(items):
 				current_slot_column = 0
 			item_index += 1
 			print("ITEM ADDED: " + item["name"])
+	populated = true
+
+func clear_inventory():
+	var children = get_children()
+	for child in children:
+		if child.is_in_group("Item"):
+			child.queue_free()
