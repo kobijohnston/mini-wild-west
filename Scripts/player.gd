@@ -130,7 +130,7 @@ func aiming():
 		change_state(Player_State.FREE)
 		current_weapon.visible = false
 		aiming_setup = false
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("left click"):
 		shoot()
 	if Input.is_action_just_pressed("reload"):
 		current_weapon.reload(stats["ammo"])
