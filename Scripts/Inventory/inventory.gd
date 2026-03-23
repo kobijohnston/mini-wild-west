@@ -22,8 +22,8 @@ func _process(delta):
 		visible = false
 		GlobalSignal.unpause.emit()
 		
-func configure(items): # Creates item slots and fills them with items from player's inventory
-	
+func configure(items): # Creates item slots and populates using populate_inventory
+
 	item_slots.clear()
 	
 	for r in MAX_ITEM_ROWS:
@@ -51,31 +51,24 @@ func populate_inventory(items):
 	if not configured:
 		print("ERROR: Inventory not configured")
 		return
-		
+	
 	if populated:
 		clear_inventory()
-				
-	var current_slot_row = 0
-	var current_slot_column = 0
+		
+	for i in items:
+		add_item(i)
 	
-	var item_index = 0
-	
-	for item in items:
-		if items.size() > 0:
-			
-			var inventory_item = inventory_item_scene.instantiate()
-			add_child(inventory_item)
-			inventory_item.set_sprite(items[item_index]["sprite"])
-			inventory_item.position = item_slots[current_slot_row][current_slot_column].position
-			
-			if current_slot_column < 2:
-				current_slot_column += 1
-			else:
-				current_slot_row += 1
-				current_slot_column = 0
-			item_index += 1
-			print("ITEM ADDED: " + item["name"])
 	populated = true
+	
+func add_item(item):
+	
+	for row in MAX_ITEM_ROWS:
+		for column in MAX_ITEM_COLUMNS:
+			if item_slots[row][column].has_item:
+				pass
+			else:
+				item_slots[row][column].add_item(item)
+				return
 
 func clear_inventory():
 	var children = get_children()
