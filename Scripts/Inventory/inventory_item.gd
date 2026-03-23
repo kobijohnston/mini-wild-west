@@ -13,7 +13,7 @@ func _process(delta: float) -> void:
 			clicked = true
 	
 	if clicked:
-		position = get_global_mouse_position()
+		global_position = get_global_mouse_position()
 	
 func set_sprite(sprite_filepath):
 	if sprite_filepath == "false":
@@ -21,6 +21,9 @@ func set_sprite(sprite_filepath):
 		return
 	item_sprite.texture = load(sprite_filepath)
 
+func set_slot():
+	pass
+	
 func _on_mouse_entered():
 	clickable = true
 
