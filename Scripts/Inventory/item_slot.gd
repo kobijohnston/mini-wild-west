@@ -12,3 +12,11 @@ func add_item(item):
 	add_child(inventory_item)
 	inventory_item.set_sprite(item["sprite"])
 	has_item = true
+
+func remove_item():
+
+	if has_item:
+		get_child(0).queue_free() #this may need to change to properly accomodate drag and drop 
+		return
+	print("ERROR: No item found to remove")
+	
