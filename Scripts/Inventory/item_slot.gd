@@ -16,7 +16,11 @@ func add_item(item):
 func remove_item():
 
 	if has_item:
-		get_child(0).queue_free() #this may need to change to properly accomodate drag and drop 
-		return
+		for child in get_children():
+			if child.is_in_group("Item"):
+				child.queue_free()
+				print("Child Deleted")
+				return
+	
 	print("ERROR: No item found to remove")
 	
