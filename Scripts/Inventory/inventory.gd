@@ -76,3 +76,4 @@ func clear_inventory():
 		for column in MAX_ITEM_COLUMNS:
 			if item_slots[row][column].has_item:
 				item_slots[row][column].remove_item()
+				item_slots[row][column].has_item = false

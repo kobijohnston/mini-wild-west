@@ -9,3 +9,8 @@ func set_sprite(sprite_filepath):
 		item_sprite.texture = load("res://icon.svg")
 		return
 	item_sprite.texture = load(sprite_filepath)
+
+
+
+func _on_gui_input(event: InputEvent) -> void:
+	pass # Replace with function body.
