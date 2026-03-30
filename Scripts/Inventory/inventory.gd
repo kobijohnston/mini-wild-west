@@ -77,3 +77,6 @@ func clear_inventory():
 			if item_slots[row][column].has_item:
 				item_slots[row][column].remove_item()
 				item_slots[row][column].has_item = false
+
+func _on_item_dropped(item):
+	pass
