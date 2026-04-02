@@ -1,13 +1,4 @@
 NEXT UP TO DO - SHOP / INVENTORY:
-	
-	INVENTORY:
-		- Basic drag and drop for items:
-			-Clicking and holding on an item picks it up and snaps to cursor
-			-Releasing click on another eligible slot drops it into that slot
-			-Releasing click on an ineligible slot or somewhere that isn't a slot sends it back to the previous slot 
-			-Signal emitted when things are dropped into KEY ITEM SLOTS (e.g. weapon) so that they are equipped/stat changes occur. 
-		- InventoryItem class is a control node and has a sprite2D and item name and type passed from the Item assigned to it. Can be clicked, dragged, and dropped into other slots. It will need a current slot and last slot attribute
-		- Player current weapon draws from inventory weapon slots -> make right click switch to secondary
 
 	SHOP:
  		- Sell menu adds to shop stock. 
@@ -35,3 +26,10 @@ Think about:
 			-Complete all star quests in one run to earn the BLACK STAR
 		-STARS are spent to unlock other towns maybe? BLACK STARS aren't spent but having them unlocks upgrades, or secrets. 
 	- A map scene that passes through shops and mini games in that map -> cross this bridge when second map is added 
+	
+	INVENTORY:
+		- Basic drag and drop for items:
+			-Clicking and holding on an item picks it up and snaps to cursor
+			-Releasing click on another eligible slot drops it into that slot
+			-Releasing click on an ineligible slot or somewhere that isn't a slot sends it back to the previous slot 
+			-Signal emitted when things are dropped into KEY ITEM SLOTS (e.g. weapon) so that they are equipped/stat changes occur. 

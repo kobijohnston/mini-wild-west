@@ -10,5 +10,3 @@ func set_sprite(sprite_filepath):
 		item_sprite.texture = load("res://icon.svg")
 		return
 	item_sprite.texture = load(sprite_filepath)
-
-		
