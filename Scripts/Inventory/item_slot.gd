@@ -11,7 +11,6 @@ func add_item(item):
 	
 	var inventory_item = inventory_item_scene.instantiate()
 	add_child(inventory_item)
-	inventory_item.item_dropped.connect(_on_item_dropped) # Do this in inventory.gd instead? iterate through and do it for each item in inv 
 	inventory_item.set_sprite(item["sprite"])
 	has_item = true
 

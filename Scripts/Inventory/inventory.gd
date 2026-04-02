@@ -71,12 +71,9 @@ func add_item(item):
 				return
 
 func clear_inventory():
-	#New version for inventory rework with items as actual children of slots -> TEST! 
+	
 	for row in MAX_ITEM_ROWS:	
 		for column in MAX_ITEM_COLUMNS:
 			if item_slots[row][column].has_item:
 				item_slots[row][column].remove_item()
 				item_slots[row][column].has_item = false
-
-func _on_item_dropped(item):
-	pass
