@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+# ----------------------------------------- States and Tooltips
 enum Player_State { FREE, AIMING, PAUSED }
 enum Tooltips { FREE, AIMING, PLAY_BLACKJACK, NEAR_SHOP }
 var current_state = Player_State.FREE
@@ -8,10 +9,14 @@ var last_state = current_state
 var last_tooltip = current_tooltip
 var aiming_setup = false
 var paused = false
-
+# ----------------------------------------- Inventory
 var inventory_scene = preload("res://Scenes/Menus/Inventory/inventory.tscn")
 var inventory = inventory_scene.instantiate()
-
+# ----------------------------------------- Current Map and Interactables
+var current_map = GlobalEnums.Maps.AMARILLO
+var shop_scene = preload("res://Scenes/Menus/shop_menu.tscn")
+var shop = shop_scene.instantiate()
+# -----------------------------------------
 var stats = {
 	"health": 100,
 	"money": 10,
@@ -102,7 +107,7 @@ func movement():
 	if Input.is_action_pressed("interact"):
 		interact()
 
-	if current_state == Player_State.FREE and Input.is_action_just_pressed("shoot"):
+	if current_state == Player_State.FREE and Input.is_action_just_pressed("left click"):
 		change_state(Player_State.AIMING)
 	move_and_slide()
 
@@ -161,11 +166,19 @@ func interact():
 			
 		Tooltips.NEAR_SHOP:
 			
-			var shop_scene = preload("res://Scenes/Menus/shop_menu.tscn")
-			var shop_menu = shop_scene.instantiate()
-			add_child(shop_menu)
-			shop_menu.configure(stats)  
-			change_state(Player_State.PAUSED)
+			if shop.configured:
+				shop.visible = true
+				change_state(Player_State.PAUSED)
+			else:
+				shop.configure(stats, current_map)
+				add_child(shop)
+				change_state(Player_State.PAUSED)
+				
+			#var shop_scene = preload("res://Scenes/Menus/shop_menu.tscn")
+			#var shop_menu = shop_scene.instantiate()
+			#add_child(shop_menu)
+			#shop_menu.configure(stats)  
+			#change_state(Player_State.PAUSED)
 			
 		_: # Tooltips: FREE, AIMING
 			

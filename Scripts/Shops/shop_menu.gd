@@ -10,6 +10,7 @@ var stock_refreshed = false
 var sell_stock_refreshed = false
 var selected_item
 var player
+var configured = false
 @onready var buy_or_sell: Control = $"Buy Or Sell"
 
 @onready var buy_menu: Control = $"Buy Menu"
@@ -25,17 +26,8 @@ var player
 @onready var shop_item_scene = preload("res://Scenes/Menus/shop_item.tscn")
 
 func _ready() -> void:
-	# EXAMPLES
 	
 	GlobalSignal.item_selected.connect(_on_item_selected)
-	
-	var ammo_item = Item.new().create("Revolver Ammo", "Bullets for your revolver.", 0.05, GlobalEnums.Item_Type.AMMO, 1, false, false, "false")
-	var whiskey = Item.new().create("Bush Whiskey", "Imported from Co. Antrim.\n\nPrevents your stamina bar from depleting for 20 seconds.", 1, GlobalEnums.Item_Type.STAMINA, 300, true, true, "whiskey.png")
-	var shotgun = Item.new().create("Pump-Action Shotgun", "Wipe out hordes of enemies with this crowd-controlling menace.", 5, GlobalEnums.Item_Type.BASE, 1, true, true, "false")
-	
-	shop_stock.append([ammo_item, 10, 1])
-	shop_stock.append([whiskey, 5, 2])
-	shop_stock.append([shotgun, 1, 3])
 	
 func _process(delta: float) -> void:
 	
@@ -47,8 +39,20 @@ func _process(delta: float) -> void:
 		Shop_State.SELL:
 			sell_screen()
 			
-func configure(p):
+func configure(p, map):
 	player = p
+	
+	match map:
+		GlobalEnums.Maps.AMARILLO:
+			var ammo_item = Item.new().create("Revolver Ammo", "Bullets for your revolver.", 0.05, GlobalEnums.Item_Type.AMMO, 1, false, false, "false")
+			var whiskey = Item.new().create("Bush Whiskey", "Imported from Co. Antrim.\n\nPrevents your stamina bar from depleting for 20 seconds.", 1, GlobalEnums.Item_Type.STAMINA, 300, true, true, "whiskey.png")
+			var shotgun = Item.new().create("Pump-Action Shotgun", "Wipe out hordes of enemies with this crowd-controlling menace.", 5, GlobalEnums.Item_Type.BASE, 1, true, true, "false")
+		
+			shop_stock.append([ammo_item, 10, 1])
+			shop_stock.append([whiskey, 5, 2])
+			shop_stock.append([shotgun, 1, 3])
+
+	configured = true
 
 func start_screen():
 	buy_or_sell.visible = true
@@ -64,15 +68,15 @@ func sell_screen():
 	if not sell_stock_refreshed:
 		draw_sell_items()
 		
-	
 func change_state(state):
 	last_state = current_state
 	current_state = state
-
-func set_stock(stock):
-	shop_stock = stock
 	
 func draw_stock():
+	
+	for item in buy_vbox.get_children():
+		item.queue_free()
+		
 	for item in shop_stock:
 		var shop_item = shop_item_scene.instantiate()
 		buy_vbox.add_child(shop_item)
@@ -88,7 +92,6 @@ func draw_sell_items():
 			sell_vbox.add_child(shop_item)
 			shop_item.config_sell(item)
 	sell_stock_refreshed = true
-	
 	
 func _on_enter_buy_pressed() -> void:
 	change_state(Shop_State.BUY)
@@ -119,6 +122,7 @@ func _on_buy_button_pressed() -> void:
 		else:
 			var i = Item.new()
 			GlobalSignal.give_item.emit(i.copy(selected_item.item))
+	
 
 func _on_sell_button_pressed() -> void:
 	
@@ -128,10 +132,11 @@ func _on_sell_button_pressed() -> void:
 		GlobalSignal.change_money.emit(selected_item.shop_item["price"])
 		GlobalSignal.take_item.emit(selected_item.item)
 		
-		if selected_item.item["restockable"]: # FIX 
+		if selected_item.item["restockable"]: # FIX -> NOTES IN COMMIT DESCRIPTION ABOUT THE PROBLEM!!!!! 05/04/2026
 			var i = Item.new()
 			var restock_item = i.copy(selected_item.item)
 			shop_stock.append([restock_item, 1, 10])
+			stock_refreshed = false
 		
 func _on_back_from_sell_pressed() -> void:
 	change_state(Shop_State.START)
@@ -143,4 +148,4 @@ func _on_enter_sell_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	GlobalSignal.unpause.emit()
-	queue_free()
+	visible = false

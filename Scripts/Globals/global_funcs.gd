@@ -22,7 +22,3 @@ func format_as_money(number) -> String:
 		decimal_count += 1
 		
 	return string
-
-func get_shop_stock(shop):
-	# Make shop stock arrays here to be passed into set_shop_stock func 
-	pass
