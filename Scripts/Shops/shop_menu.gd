@@ -132,7 +132,8 @@ func _on_sell_button_pressed() -> void:
 		GlobalSignal.change_money.emit(selected_item.shop_item["price"])
 		GlobalSignal.take_item.emit(selected_item.item)
 		
-		if selected_item.item["restockable"]: # FIX -> NOTES IN COMMIT DESCRIPTION ABOUT THE PROBLEM!!!!! 05/04/2026
+		if selected_item.item["restockable"]:
+			return # FIX -> NOTES IN COMMIT DESCRIPTION ABOUT THE PROBLEM!!!!! 05/04/2026
 			var i = Item.new()
 			var restock_item = i.copy(selected_item.item)
 			shop_stock.append([restock_item, 1, 10])
