@@ -45,19 +45,13 @@ func configure(p, map):
 	match map:
 		GlobalEnums.Maps.AMARILLO:
 			var ammo_item = Item.new().create("Revolver Ammo", "Bullets for your revolver.", 0.05, GlobalEnums.Item_Type.AMMO, 1, false, false, "false")
-			var ammo_shop = shop_item_scene.instantiate()
-			ammo_shop.config(ammo_item, 10)
 			var whiskey = Item.new().create("Bush Whiskey", "Imported from Co. Antrim.\n\nPrevents your stamina bar from depleting for 20 seconds.", 1, GlobalEnums.Item_Type.STAMINA, 300, true, true, "whiskey.png")
-			var whiskey_shop = shop_item_scene.instantiate()
-			whiskey_shop.config(whiskey, 5)
 			var shotgun = Item.new().create("Pump-Action Shotgun", "Wipe out hordes of enemies with this crowd-controlling menace.", 5, GlobalEnums.Item_Type.BASE, 1, true, true, "false")
-			var shotgun_shop = shop_item_scene.instantiate()
-			shotgun_shop.config(shotgun, 1)
-			
-			shop_stock.append(ammo_shop)
-			shop_stock.append(whiskey_shop)
-			shop_stock.append(shotgun_shop)
-	
+		
+			shop_stock.append([ammo_item, 10, 1])
+			shop_stock.append([whiskey, 5, 2])
+			shop_stock.append([shotgun, 1, 3])
+
 	configured = true
 
 func start_screen():
@@ -84,7 +78,9 @@ func draw_stock():
 		item.queue_free()
 		
 	for item in shop_stock:
-		buy_vbox.add_child(item.item)
+		var shop_item = shop_item_scene.instantiate()
+		buy_vbox.add_child(shop_item)
+		shop_item.config(item[0], item[1])
 
 func draw_sell_items():
 	
@@ -139,9 +135,7 @@ func _on_sell_button_pressed() -> void:
 		if selected_item.item["restockable"]: # FIX -> NOTES IN COMMIT DESCRIPTION ABOUT THE PROBLEM!!!!! 05/04/2026
 			var i = Item.new()
 			var restock_item = i.copy(selected_item.item)
-			var restock_shop = shop_item_scene.instantiate()
-			restock_shop.config(restock_item, 1)
-			shop_stock.append(restock_shop)
+			shop_stock.append([restock_item, 1, 10])
 			stock_refreshed = false
 		
 func _on_back_from_sell_pressed() -> void:
